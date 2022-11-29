@@ -1,43 +1,30 @@
-import React, { FC, useState } from 'react';
-import { Alert, View } from 'react-native';
+import React, { FC } from 'react';
+import { View } from 'react-native';
 
-import { Input } from '../components/atoms/Input/Input';
 import { Spacer } from '../components/atoms/Spacer/Spacer';
-import { Button, EButton } from '../components/atoms/Button/Button';
 import { CompanyBrand } from '../components/atoms/CompanyBrand/CompanyBrand';
+import { Form } from '../components/Login/Form';
+import { RegisterCTA } from '../components/Login/RegisterCTA';
+import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
+import { ForgetPassword } from '../components/Login/ForgetPassword';
 
-export const Login: FC<void> = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
+export const Login: FC = () => {
   return (
     <View>
       <CompanyBrand size={128} />
-      <View>
-        <Input
-          value={email}
-          setValue={setEmail}
-          placeholder={'Email'}
-          iconName={'person'}
-          keyboardType={'email-address'}
-        />
-        <Spacer space={'xl'} direction={'bottom'} />
-        <Input
-          value={password}
-          setValue={setPassword}
-          placeholder={'Password'}
-          iconName={'lock-closed'}
-          keyboardType={'default'}
-          textContentType={'password'}
-          secureTextEntry={true}
-        />
-      </View>
+      <Form />
+
       <Spacer space={'xl'} direction={'bottom'} />
-      <Button
-        pressHandler={() => Alert.alert(email)}
-        text={'Sign In'}
-        type={EButton.PRIMARY}
-      />
+
+      <ForgetPassword />
+
+      <Spacer space={'xl'} direction={'bottom'} />
+
+      <AuthExternalProvider />
+
+      <Spacer space={'4xl'} direction={'bottom'} />
+
+      <RegisterCTA />
     </View>
   );
 };

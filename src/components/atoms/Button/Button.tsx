@@ -1,6 +1,10 @@
 import React, { FC } from 'react';
-import { GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
-import { styles } from './Button.styles';
+import { Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import { baseStyles, styles } from './Button.styles';
+import { normalize } from '../../../styles/normalize';
+import { PressHandler } from '../../../../types/PressHandler';
 
 export enum EButton {
   PRIMARY = 'primary',
@@ -9,36 +13,26 @@ export enum EButton {
 }
 
 type ButtonProps = {
-  pressHandler: (event: GestureResponderEvent) => void;
+  pressHandler: PressHandler;
   text: string;
   type: EButton;
+  iconName?: string;
 };
 
-export const Button: FC<ButtonProps> = ({ text, type, pressHandler }) => {
-  switch (type) {
-    case EButton.PRIMARY:
-      return (
-        <TouchableOpacity
-          style={styles.primary.container}
-          onPress={pressHandler}>
-          <Text style={styles.primary.text}>{text}</Text>
-        </TouchableOpacity>
-      );
-    case EButton.SECONDARY:
-      return (
-        <TouchableOpacity onPress={pressHandler}>
-          <Text>{text}</Text>
-        </TouchableOpacity>
-      );
+export const Button: FC<ButtonProps> = ({
+  text,
+  type,
+  pressHandler,
+  iconName,
+}) => {
+  const icon = iconName && (
+    <Icon size={normalize(20)} style={baseStyles.icon} name={iconName} />
+  );
 
-    case EButton.TERTIARY:
-      return (
-        <TouchableOpacity onPress={pressHandler}>
-          <Text>{text}</Text>
-        </TouchableOpacity>
-      );
-
-    default:
-      return null;
-  }
+  return (
+    <TouchableOpacity style={styles[type].container} onPress={pressHandler}>
+      {icon}
+      <Text style={styles[type].text}>{text}</Text>
+    </TouchableOpacity>
+  );
 };

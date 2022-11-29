@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   input: {
-    backgroundColor: colors.primary,
+    backgroundColor: '#fff',
     flex: 1,
     color: colors.text,
     fontSize: fontSizes.xl,
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     paddingLeft: spacings.l,
   },
   icon: {
-    backgroundColor: colors.primary,
+    backgroundColor: '#fff',
     padding: spacings.ml,
   },
 });

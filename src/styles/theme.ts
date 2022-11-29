@@ -1,12 +1,12 @@
 import { normalize } from './normalize';
 
 export const colors = {
-  primary: '#F8F8F8',
-  secondary: '#C3DBC5',
-  tertiary: '#F6FEAA',
+  primary: '#0B7FAD',
+  secondary: '#D9F2FD',
+  tertiary: '#540D6E',
 
-  background: '#E7EDEF',
-  text: '#0D1B1E',
+  background: '#FFF2F1',
+  text: '#1B1725',
 };
 
 export const fontSizes = {

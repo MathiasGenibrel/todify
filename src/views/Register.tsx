@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { CompanyBrand } from '../components/atoms/CompanyBrand/CompanyBrand';
 import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
-import { RegisterForm } from '../components/Register/RegisterForm';
+import { RegisterForm } from '../components/Register/RegisterForm/RegisterForm';
 import { SignInCTA } from '../components/Register/SignInCTA';
 
 export const Register: FC = () => {

@@ -4,9 +4,10 @@ import { Input } from '../atoms/Input/Input';
 import { Spacer } from '../atoms/Spacer/Spacer';
 import { Button, EButton } from '../atoms/Button/Button';
 
-export const Form: FC = () => {
+export const RegisterForm: FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   return (
     <>
@@ -14,7 +15,7 @@ export const Form: FC = () => {
         <Input
           value={email}
           setValue={setEmail}
-          placeholder={'Email'}
+          placeholder={'example@domain.com'}
           iconName={'person'}
           keyboardType={'email-address'}
         />
@@ -25,6 +26,16 @@ export const Form: FC = () => {
           placeholder={'Password'}
           iconName={'lock-closed'}
           keyboardType={'default'}
+          textContentType={'newPassword'}
+          secureTextEntry={true}
+        />
+        <Spacer space={'xl'} direction={'bottom'} />
+        <Input
+          value={confirmPassword}
+          setValue={setConfirmPassword}
+          placeholder={'Confirm password'}
+          iconName={'lock-closed'}
+          keyboardType={'default'}
           textContentType={'password'}
           secureTextEntry={true}
         />
@@ -32,7 +43,7 @@ export const Form: FC = () => {
       <Spacer space={'xl'} direction={'bottom'} />
       <Button
         pressHandler={() => Alert.alert(email)}
-        text={'Sign In'}
+        text={'Register'}
         type={EButton.PRIMARY}
       />
     </>

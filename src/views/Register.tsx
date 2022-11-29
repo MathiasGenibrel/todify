@@ -3,28 +3,23 @@ import { View } from 'react-native';
 
 import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { CompanyBrand } from '../components/atoms/CompanyBrand/CompanyBrand';
-import { LoginForm } from '../components/Login/LoginForm';
-import { RegisterCTA } from '../components/Login/RegisterCTA';
 import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
-import { ForgetPassword } from '../components/Login/ForgetPassword';
+import { RegisterForm } from '../components/Register/RegisterForm';
+import { SignInCTA } from '../components/Register/SignInCTA';
 
-export const Login: FC = () => {
+export const Register: FC = () => {
   return (
     <View>
       <CompanyBrand size={128} />
-      <LoginForm />
+      <RegisterForm />
 
-      <Spacer space={'xl'} direction={'bottom'} />
-
-      <ForgetPassword />
-
-      <Spacer space={'xl'} direction={'bottom'} />
+      <Spacer space={'4xl'} direction={'bottom'} />
 
       <AuthExternalProvider />
 
       <Spacer space={'4xl'} direction={'bottom'} />
 
-      <RegisterCTA />
+      <SignInCTA />
     </View>
   );
 };

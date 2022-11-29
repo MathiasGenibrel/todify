@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
-import { GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { styles } from './Link.styles';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../../../App';
+import { PressHandler } from '../../../types/PressHandler';
 
 type LinkProps = {
   children: string;
-  path: string;
+  path: keyof RootStackParamList;
 };
 
-type HandlePress = (event: GestureResponderEvent) => void;
-
 export const Link: FC<LinkProps> = ({ children, path }) => {
-  const handlePress: HandlePress = event => {
-    console.log(event);
-    console.log(path);
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const handlePress: PressHandler = () => {
+    navigation.navigate(path);
   };
 
   return (

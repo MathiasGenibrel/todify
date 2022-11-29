@@ -14,7 +14,7 @@ export const SignInCTA = () => {
   return (
     <View style={styles.container}>
       <Text>Already have an account ?</Text>
-      <Link path={'./register'}>Logged in</Link>
+      <Link path={'Login'}>Logged in</Link>
     </View>
   );
 };

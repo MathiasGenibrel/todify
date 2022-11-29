@@ -14,7 +14,7 @@ export const RegisterCTA = () => {
   return (
     <View style={styles.container}>
       <Text>Don't have an account ?</Text>
-      <Link path={'./register'}>Create an account</Link>
+      <Link path={'Register'}>Create an account</Link>
     </View>
   );
 };

@@ -11,7 +11,7 @@ const LayoutStyles = StyleSheet.create({
 });
 
 type LayoutProps = {
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 };
 
 export const Layout: FC<LayoutProps> = ({ children }) => {

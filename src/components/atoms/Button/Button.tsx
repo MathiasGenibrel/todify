@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { baseStyles, styles } from './Button.styles';
 import { normalize } from '../../../styles/normalize';
-import { PressHandler } from '../../../../types/PressHandler';
+import { PressHandler } from '../../../types/PressHandler';
 
 export enum EButton {
   PRIMARY = 'primary',

@@ -1,18 +1,9 @@
 import { initializeApp, FirebaseApp } from 'firebase/app';
 import { getAuth, Auth } from 'firebase/auth';
+import { FirebaseOptions } from 'firebase/app';
+import { config } from '../config/config';
 
-type FirebaseConfigProps = {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
-};
-
-const firebaseConfig: FirebaseConfigProps = {
-  // Empty for push
-};
+const firebaseConfig: FirebaseOptions = { ...config.firebase };
 
 const firebaseApp = initializeApp(firebaseConfig);
 const firebaseAuth = getAuth(firebaseApp);

@@ -26,6 +26,7 @@ export const Project = () => {
       <TouchableOpacity onPress={logoutUser}>
         <Text>Disconnect</Text>
       </TouchableOpacity>
+      <Spacer space={'xl'} direction={'all'} />
     </ScrollView>
   );
 };

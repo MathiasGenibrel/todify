@@ -22,7 +22,7 @@ export const ProjectDetail = () => {
   }
 
   // Todo connect with repository
-  const data = mockProjectData.find(project => project.id === params.id);
+  const data = mockProjectData['K9RQaKu1znT3CcIi7qkWFCkZBkh2'].projects;
 
   if (!data) {
     return <ErrorDisplay />;

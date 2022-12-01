@@ -5,18 +5,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { normalize } from '../../../styles/normalize';
 import { styles } from './Status.styles';
 import { getContentColor } from './getContentColor';
+import { StatusContent } from '../../../types/firebaseDB.types';
 
 export enum StatusDefaultCase {
   OPEN = 'open',
   TODO = 'todo',
   CLOSE = 'close',
 }
-
-export type StatusContent = {
-  name: string | StatusDefaultCase;
-  iconName?: string;
-  color?: string;
-};
 
 type StatusProps = {
   status: StatusContent;

@@ -4,12 +4,12 @@ import { Login } from '../views/Login';
 import { Register } from '../views/Register';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export type RootStackParamList = {
+export type AuthRootStackParamList = {
   Login: undefined;
   Register: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<AuthRootStackParamList>();
 
 export const AuthRouter = () => {
   return (

@@ -20,7 +20,7 @@ export const cardStyles = StyleSheet.create({
     fontSize: fontSizes.xl,
   },
   bottomContainer: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     justifyContent: 'space-between',
     alignItems: 'center',
   },

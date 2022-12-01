@@ -6,7 +6,7 @@ import { Goal } from '../../atoms/Goal/Goal';
 import { TitleGroup } from './TitleGroup/TitleGroup';
 import { Status, StatusContent } from '../../atoms/Status/Status';
 
-type CardProps = {
+export type CardProps = {
   title: string;
   subtitle: string;
   date: Date;
@@ -14,6 +14,7 @@ type CardProps = {
   status: StatusContent;
 };
 
+// TODO replace goal by task
 export const Card: FC<CardProps> = ({
   title,
   subtitle,

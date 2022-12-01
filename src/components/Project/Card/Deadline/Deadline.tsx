@@ -18,6 +18,7 @@ const dateConverter = (currentDate: Date) => {
   return currentDate.toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'short',
+    year: 'numeric',
   });
 };
 

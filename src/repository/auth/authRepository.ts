@@ -20,31 +20,23 @@ export class AuthRepository extends FirebaseRepository {
   }
 
   private async createUser(email: string, password: string) {
-    try {
-      const userCreated = await createUserWithEmailAndPassword(
-        this.firebaseAuth as Auth,
-        email,
-        password,
-      );
+    const userCreated = await createUserWithEmailAndPassword(
+      this.firebaseAuth as Auth,
+      email,
+      password,
+    );
 
-      return userCreated.user;
-    } catch (err) {
-      console.error(err);
-    }
+    return userCreated.user;
   }
 
   private async findUser(email: string, password: string) {
-    try {
-      const userFound = await signInWithEmailAndPassword(
-        this.firebaseAuth as Auth,
-        email,
-        password,
-      );
+    const userFound = await signInWithEmailAndPassword(
+      this.firebaseAuth as Auth,
+      email,
+      password,
+    );
 
-      return userFound.user;
-    } catch (err) {
-      console.error(err);
-    }
+    return userFound.user;
   }
 
   /**

@@ -25,7 +25,11 @@ export const authSubmitHandler = async (
       return console.log(errorToDisplay);
     }
 
-    Alert.alert('An error is occurred');
+    if (err instanceof Object && 'code' in err) {
+      return Alert.alert(JSON.stringify(err.code));
+    }
+
+    Alert.alert(JSON.stringify(err));
     console.log('DEBUG Register Form : ', err);
   }
 };

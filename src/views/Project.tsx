@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useAuthDispatcher } from '../store/auth/useAuthDispatcher';
 import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { Card } from '../components/Project/Card/Card';
 import { spacings } from '../styles/theme';
+import { mockProjectData } from '../mocks/projectData';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,18 +15,17 @@ const styles = StyleSheet.create({
 export const Project = () => {
   const { logoutUser } = useAuthDispatcher();
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Spacer space={'xl'} direction={'bottom'} />
-      <Card
-        title={'Client Review & Feedback'}
-        subtitle={'Crypto Wallet Redesign'}
-        date={new Date()}
-        goal={100}
-        status={{ name: 'close' }}
-      />
+      {mockProjectData.map(project => (
+        <>
+          <Card {...project} />
+          <Spacer space={'l'} direction={'bottom'} />
+        </>
+      ))}
       <TouchableOpacity onPress={logoutUser}>
         <Text>Disconnect</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };

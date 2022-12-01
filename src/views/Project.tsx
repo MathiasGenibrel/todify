@@ -1,32 +1,28 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { useAuthDispatcher } from '../store/auth/useAuthDispatcher';
-import { Spacer } from '../components/atoms/Spacer/Spacer';
-import { Card } from '../components/Project/Card/Card';
-import { spacings } from '../styles/theme';
-import { mockProjectData } from '../mocks/projectData';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ProjectDetail } from './ProjectDetail';
+import { ListProject } from '../components/Project/ListProject/ListProject';
 
-const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: spacings.xl,
-  },
-});
+export type ProjectRootStackParamList = {
+  project: undefined;
+  detail: { id: string };
+};
+
+const Stack = createNativeStackNavigator<ProjectRootStackParamList>();
 
 export const Project = () => {
-  const { logoutUser } = useAuthDispatcher();
   return (
-    <ScrollView style={styles.container}>
-      <Spacer space={'xl'} direction={'bottom'} />
-      {mockProjectData.map(project => (
-        <>
-          <Card {...project} />
-          <Spacer space={'l'} direction={'bottom'} />
-        </>
-      ))}
-      <TouchableOpacity onPress={logoutUser}>
-        <Text>Disconnect</Text>
-      </TouchableOpacity>
-      <Spacer space={'xl'} direction={'all'} />
-    </ScrollView>
+    <Stack.Navigator>
+      <Stack.Screen
+        name={'project'}
+        component={ListProject}
+        options={{ header: () => null }} // used to hide header
+      />
+      <Stack.Screen
+        name={'detail'}
+        component={ProjectDetail}
+        options={{ header: () => null }}
+      />
+    </Stack.Navigator>
   );
 };

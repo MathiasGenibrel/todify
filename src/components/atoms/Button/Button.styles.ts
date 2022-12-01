@@ -5,10 +5,11 @@ import { normalize } from '../../../styles/normalize';
 export const baseStyles = StyleSheet.create({
   container: {
     padding: spacings.ml,
-    marginHorizontal: spacings['3xl'],
+    marginHorizontal: normalize(30),
     borderRadius: spacings.s,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: fontSizes.s,
@@ -31,6 +32,9 @@ export const styles = {
       color: colors.background,
       fontWeight: '500',
     },
+    icon: {
+      ...baseStyles.icon,
+    },
   }),
   secondary: StyleSheet.create({
     container: {
@@ -42,16 +46,25 @@ export const styles = {
       color: colors.text,
       fontWeight: '500',
     },
+    icon: {
+      ...baseStyles.icon,
+    },
   }),
   tertiary: StyleSheet.create({
     container: {
       ...baseStyles.container,
-      opacity: 0.6,
+      marginHorizontal: 0,
+      paddingHorizontal: 0,
     },
     text: {
       ...baseStyles.text,
-      color: colors.text,
+      color: colors.primary,
       fontWeight: '600',
+    },
+    icon: {
+      ...baseStyles.icon,
+      color: colors.primary,
+      marginRight: spacings.m,
     },
   }),
 };

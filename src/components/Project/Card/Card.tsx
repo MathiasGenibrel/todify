@@ -7,6 +7,7 @@ import { TitleGroup } from './TitleGroup/TitleGroup';
 import { Status, StatusContent } from '../../atoms/Status/Status';
 
 export type CardProps = {
+  pressHandler: () => void;
   title: string;
   subtitle: string;
   date: Date;
@@ -16,6 +17,7 @@ export type CardProps = {
 
 // TODO replace goal by task
 export const Card: FC<CardProps> = ({
+  pressHandler,
   title,
   subtitle,
   date,
@@ -25,7 +27,8 @@ export const Card: FC<CardProps> = ({
   return (
     <TouchableOpacity
       style={cardStyles.container}
-      onPress={() => Alert.alert(title)}>
+      onPress={pressHandler}
+      onLongPress={() => Alert.alert('Long Press')}>
       <View style={cardStyles.topContainer}>
         <TitleGroup title={title} subtitle={subtitle} />
         <Goal percentage={goal} />

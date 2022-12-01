@@ -1,22 +1,46 @@
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Board } from '../views/Board';
+import { Project } from '../views/Project';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Spacer } from '../components/atoms/Spacer/Spacer';
+import { Task } from '../views/Task';
+import { Activity } from '../views/Activity';
 
 export type RootStackParamList = {
-  Board: undefined;
+  project: undefined;
+  task: undefined;
+  activity: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createMaterialTopTabNavigator<RootStackParamList>();
 
 export const AppRouter = () => {
   return (
-    <Stack.Navigator initialRouteName={'Board'}>
-      <Stack.Screen
-        name="Board"
-        component={Board}
-        options={{ title: 'Your Board' }}
-      />
-    </Stack.Navigator>
+    <>
+      <Spacer space={'xl'} />
+      <Tab.Navigator initialRouteName={'task'} tabBarPosition={'top'}>
+        <Tab.Screen
+          name="project"
+          component={Project}
+          options={{ tabBarLabelStyle: { textTransform: 'capitalize' } }}
+        />
+        <Tab.Screen
+          name="task"
+          component={Task}
+          options={{
+            title: "Today's Task",
+            tabBarLabelStyle: { textTransform: 'capitalize' },
+          }}
+        />
+        <Tab.Screen
+          name="activity"
+          component={Activity}
+          options={{
+            title: 'Last Activity',
+            tabBarLabelStyle: { textTransform: 'capitalize' },
+          }}
+        />
+      </Tab.Navigator>
+    </>
   );
 };

@@ -7,6 +7,11 @@ export const colors = {
 
   background: '#FFF2F1',
   text: '#1B1725',
+
+  success: '#5b9e42',
+  info: '#5C8BD6',
+  warning: '#FFB41F',
+  error: '#FF3333',
 };
 
 export const fontSizes = {
@@ -56,6 +61,10 @@ export const fontSizes = {
  * Return pixel ratio normalized
  */
 export const spacings = {
+  /**
+   * normalize(1) => 1px
+   */
+  '2xs': normalize(1),
   /**
    * normalize(2) => 2px
    */

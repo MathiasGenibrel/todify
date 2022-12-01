@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useAuth } from '../store/auth/useAuth';
 
@@ -9,11 +10,11 @@ import { AppRouter } from './AppRouter';
 export const Router = () => {
   const { isLogged } = useAuth();
 
-  console.log({ isLogged });
-
   return (
-    <NavigationContainer>
-      {isLogged ? <AppRouter /> : <AuthRouter />}
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {isLogged ? <AppRouter /> : <AuthRouter />}
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };

@@ -11,19 +11,18 @@ export type CardProps = {
   pressHandler: () => void;
   title: string;
   subtitle: string;
-  date: Date;
   status: StatusContent;
   currentProgression: number;
+  date?: Date;
 };
 
-// TODO replace goal by task
 export const Card: FC<CardProps> = ({
   pressHandler,
   title,
   subtitle,
-  date,
   status,
   currentProgression,
+  date,
 }) => {
   return (
     <TouchableOpacity
@@ -36,8 +35,8 @@ export const Card: FC<CardProps> = ({
       </View>
 
       <View style={cardStyles.bottomContainer}>
-        <Deadline date={date} />
         <Status status={status} />
+        {date && <Deadline date={date} />}
       </View>
     </TouchableOpacity>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 import { ProjectRootStackParamList } from './Project';
@@ -13,6 +13,7 @@ import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
 import { LocalRealtimeDatabaseRepository } from '../repository/realtimeDatabase/localRealtimeDatabaseRepository';
 import { useAuth } from '../store/auth/useAuth';
+import { Card } from '../components/Project/Card/Card';
 
 const database = new LocalRealtimeDatabaseRepository();
 
@@ -41,9 +42,21 @@ export const ProjectDetail = () => {
       <TaskSection tasks={data.tasks} />
 
       <ScrollView>
-        <View>
-          <Text>COUCOU</Text>
-        </View>
+        <Spacer space={'ml'} />
+        {data.tasks?.map(task => (
+          <>
+            <Card
+              pressHandler={() => null}
+              title={task.name}
+              subtitle={task.description}
+              date={task.dateTarget}
+              status={task.status}
+              currentProgression={task.isDone ? 100 : 0}
+            />
+            <Spacer space={'ml'} />
+          </>
+        ))}
+        <Spacer space={'l'} />
       </ScrollView>
     </View>
   );

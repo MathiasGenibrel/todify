@@ -20,36 +20,60 @@ export const mockProjectData: MockProjectData = {
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
             name: 'See client',
-            isDone: false,
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'close' },
+            isDone: true,
+            dateTarget: new Date(),
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'close' },
             isDone: true,
+            dateTarget: new Date(),
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'todo' },
             isDone: false,
+            dateTarget: new Date(),
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],
@@ -64,52 +88,82 @@ export const mockProjectData: MockProjectData = {
         tasks: [
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
-            name: 'See client',
+            name: 'On va en finir',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],
@@ -125,51 +179,81 @@ export const mockProjectData: MockProjectData = {
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],
@@ -189,66 +273,107 @@ export const mockProjectData: MockProjectData = {
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'todo' },
             isDone: false,
+            dateTarget: new Date(),
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'close' },
             isDone: true,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'close' },
+            isDone: true,
+            dateTarget: new Date('2022-11-28'),
+          },
+          {
+            id: '8db0185e-f507-4015-b9c7-05ceee545e97',
+            name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
-            isDone: true,
-          },
-          {
-            id: '8db0185e-f507-4015-b9c7-05ceee545e97',
-            name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],
@@ -264,56 +389,89 @@ export const mockProjectData: MockProjectData = {
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],
@@ -329,61 +487,97 @@ export const mockProjectData: MockProjectData = {
           {
             id: '6db1130f-d5c2-45a6-8d71-43d1001a16b5',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '8db0185e-f507-4015-b9c7-05ceee545e97',
             name: 'Attendre le Drakkar intrépide dans la tour',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '16480136-5199-4098-8fe7-dc78288d6e93',
             name: "Livraison d'une r7",
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: 'b91aa0c3-df29-4f76-a2ba-fdff7720a360',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
           {
             id: '3b7e19b1-8978-44be-9bb7-3cfdfdcded6c',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '97466012-7eb6-4b0e-8368-4057a41d2eb1',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: false,
           },
           {
             id: '841ee9f9-83a9-4c24-9272-8f18a9800eef',
             name: 'See client',
+            description:
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+            status: { name: 'open' },
             isDone: true,
           },
         ],

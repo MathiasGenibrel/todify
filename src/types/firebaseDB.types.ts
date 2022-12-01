@@ -1,5 +1,6 @@
 import { StatusDefaultCase } from '../components/atoms/Status/Status';
 
+// Maybe add priority for status => 'open': 1, 'close': 1, 'to do': 2, review: 5
 export type StatusContent = {
   name: string | StatusDefaultCase;
   iconName?: string;
@@ -9,7 +10,11 @@ export type StatusContent = {
 export type TaskContent = {
   id: string;
   name: string;
+  description: string;
   isDone: boolean;
+  status: StatusContent;
+  dateTarget?: Date;
+  dateCompleted?: Date;
 };
 
 export type ProjectData = {

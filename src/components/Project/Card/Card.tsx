@@ -4,15 +4,16 @@ import { cardStyles } from './Card.styles';
 import { Deadline } from './Deadline/Deadline';
 import { Goal } from '../../atoms/Goal/Goal';
 import { TitleGroup } from './TitleGroup/TitleGroup';
-import { Status, StatusContent } from '../../atoms/Status/Status';
+import { Status } from '../../atoms/Status/Status';
+import { StatusContent } from '../../../types/firebaseDB.types';
 
 export type CardProps = {
   pressHandler: () => void;
   title: string;
   subtitle: string;
   date: Date;
-  goal: number;
   status: StatusContent;
+  currentProgression: number;
 };
 
 // TODO replace goal by task
@@ -21,8 +22,8 @@ export const Card: FC<CardProps> = ({
   title,
   subtitle,
   date,
-  goal,
   status,
+  currentProgression,
 }) => {
   return (
     <TouchableOpacity
@@ -31,7 +32,7 @@ export const Card: FC<CardProps> = ({
       onLongPress={() => Alert.alert('Long Press')}>
       <View style={cardStyles.topContainer}>
         <TitleGroup title={title} subtitle={subtitle} />
-        <Goal percentage={goal} />
+        <Goal percentage={currentProgression} />
       </View>
 
       <View style={cardStyles.bottomContainer}>

@@ -4,8 +4,6 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 
 import { ProjectRootStackParamList } from './Project';
 
-import { mockProjectData } from '../mocks/projectData';
-
 import { globalView } from '../components/ProjectDetail/styles';
 
 import { ErrorDisplay } from '../components/ProjectDetail/ErrorDisplay';
@@ -13,16 +11,20 @@ import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { NavigationButton } from '../components/ProjectDetail/NavigationButton/NavigationButton';
 import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
+import { LocalRealtimeDatabaseRepository } from '../repository/realtimeDatabase/localRealtimeDatabaseRepository';
+import { useAuth } from '../store/auth/useAuth';
+
+const database = new LocalRealtimeDatabaseRepository();
 
 export const ProjectDetail = () => {
   const { params } = useRoute<RouteProp<ProjectRootStackParamList>>();
+  const { user } = useAuth();
 
-  if (!params) {
+  if (!params || !user) {
     return <ErrorDisplay />;
   }
 
-  // Todo connect with repository
-  const data = mockProjectData['K9RQaKu1znT3CcIi7qkWFCkZBkh2'].projects;
+  const data = database.getUserProject(user.id, params.id);
 
   if (!data) {
     return <ErrorDisplay />;

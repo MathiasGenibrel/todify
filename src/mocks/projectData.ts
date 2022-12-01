@@ -56,10 +56,10 @@ export const mockProjectData: MockProjectData = {
       },
       {
         id: 'c1ad9a19-c29f-4caa-91bc-f8ca2f5f292d',
-        title: 'Client Review & Feedback',
-        subtitle: 'Crypto Wallet Redesign',
+        title: 'Git init',
+        subtitle: 'initial repo project',
         date: new Date('2023-12-15'),
-        goal: 58,
+        goal: 10,
         status: { name: 'todo' },
         tasks: [
           {

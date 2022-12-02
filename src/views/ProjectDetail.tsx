@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
-import { ProjectRootStackParamList } from './Project';
+import { ProjectRootStackParamList, RootName } from './Project';
 
 import { globalView } from '../components/ProjectDetail/styles';
 
@@ -12,13 +12,14 @@ import { NavigationButton } from '../components/ProjectDetail/NavigationButton/N
 import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
 import { Card, CardType } from '../components/Project/Card/Card';
-import { useProject } from '../hooks/useProject';
+import { useProject } from '../hooks/useProject/useProject';
 
 export const ProjectDetail = () => {
-  const { params } = useRoute<RouteProp<ProjectRootStackParamList>>();
-  const { project } = useProject(params.id);
+  const { params } =
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
+  const { project, deleteTask } = useProject(params.id);
 
-  if (!params) {
+  if (!params || !project) {
     return <ErrorDisplay />;
   }
 
@@ -38,6 +39,7 @@ export const ProjectDetail = () => {
           <React.Fragment key={task.id}>
             <Card
               pressHandler={() => null}
+              longPressDeleteAction={() => deleteTask(task.id)}
               title={task.name}
               subtitle={task.description}
               date={task.dateTarget}

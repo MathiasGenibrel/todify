@@ -14,6 +14,7 @@ export enum CardType {
 
 export type CardProps = {
   pressHandler: () => void;
+  longPressDeleteAction: () => void;
   title: string;
   subtitle: string;
   status: StatusContent;
@@ -24,6 +25,7 @@ export type CardProps = {
 
 export const Card: FC<CardProps> = ({
   pressHandler,
+  longPressDeleteAction,
   title,
   subtitle,
   status,
@@ -39,7 +41,10 @@ export const Card: FC<CardProps> = ({
         {
           text: 'Delete',
           style: 'destructive',
-          onPress: () => Vibration.vibrate(),
+          onPress: () => {
+            longPressDeleteAction();
+            Vibration.vibrate();
+          },
         },
         {
           text: 'Cancel',

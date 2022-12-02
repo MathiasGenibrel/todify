@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
@@ -8,14 +8,20 @@ import { ProjectRootStackParamList } from '../../../views/Project';
 
 import { button } from '../styles';
 
-export const NavigationButton = () => {
+type NavigationButtonProps = {
+  buttonBackText?: string;
+};
+
+export const NavigationButton: FC<NavigationButtonProps> = ({
+  buttonBackText = 'All Projects',
+}) => {
   const { goBack } = useNavigation<NavigationProp<ProjectRootStackParamList>>();
 
   return (
     <View style={button.container}>
       <Button
         pressHandler={goBack}
-        text={'back'}
+        text={buttonBackText}
         type={EButton.TERTIARY}
         iconName={'chevron-left'}
         iconSize={10}
@@ -24,7 +30,7 @@ export const NavigationButton = () => {
       />
       <Button
         pressHandler={goBack}
-        text={'edit'}
+        text={'Edit'}
         type={EButton.TERTIARY}
         marginHorizontal={0}
       />

@@ -1,5 +1,5 @@
 import { FirebaseRepository } from '../firebaseRepository';
-import { mockProjectData } from '../../mocks/projectData';
+import { mockProjectData } from '../../mocks/mockProjectData';
 import { RealtimeDatabaseRepository } from './realtimeDatabaseRepository';
 
 export class LocalRealtimeDatabaseRepository

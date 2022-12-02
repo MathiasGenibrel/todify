@@ -4,7 +4,7 @@ import { ProjectDetail } from './ProjectDetail';
 import { ListProject } from '../components/Project/ListProject/ListProject';
 
 export type ProjectRootStackParamList = {
-  project: undefined;
+  projects: undefined;
   detail: { id: string };
 };
 
@@ -14,7 +14,7 @@ export const Project = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name={'project'}
+        name={'projects'}
         component={ListProject}
         options={{ header: () => null }} // used to hide header
       />

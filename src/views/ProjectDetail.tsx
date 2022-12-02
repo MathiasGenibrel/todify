@@ -13,7 +13,7 @@ import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
 import { LocalRealtimeDatabaseRepository } from '../repository/realtimeDatabase/localRealtimeDatabaseRepository';
 import { useAuth } from '../store/auth/useAuth';
-import { Card } from '../components/Project/Card/Card';
+import { Card, CardType } from '../components/Project/Card/Card';
 
 const database = new LocalRealtimeDatabaseRepository();
 
@@ -44,7 +44,7 @@ export const ProjectDetail = () => {
       <ScrollView>
         <Spacer space={'ml'} />
         {data.tasks?.map(task => (
-          <>
+          <React.Fragment key={task.id}>
             <Card
               pressHandler={() => null}
               title={task.name}
@@ -52,9 +52,10 @@ export const ProjectDetail = () => {
               date={task.dateTarget}
               status={task.status}
               currentProgression={task.isDone ? 100 : 0}
+              cardType={CardType.TASK}
             />
             <Spacer space={'ml'} />
-          </>
+          </React.Fragment>
         ))}
         <Spacer space={'l'} />
       </ScrollView>

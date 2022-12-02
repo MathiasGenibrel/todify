@@ -1,13 +1,20 @@
-import { FirebaseRepository } from '../firebaseRepository';
+import { ProjectData } from '../../types/firebaseDB.types';
 
-export class RealtimeDatabaseRepository extends FirebaseRepository {
-  constructor() {
-    super();
-  }
+export interface ProjectsUserData extends ProjectData {
+  totalTasks: number;
+  tasksCompleted: number;
+  currentProgression: number;
+}
 
-  public getAllUserProjects(_id: string) {}
+export abstract class RealtimeDatabaseRepository {
+  // @ts-ignore
+  public async getAllUserProjects(_id: string): Promise<ProjectsUserData[]> {}
 
-  public getUserProject(_userId: string, _projectId: string) {}
+  public async getUserProject(
+    _userId: string,
+    _projectId: string,
+    // @ts-ignore
+  ): Promise<?ProjectsUserData> {}
 
-  public setUserProject(_userId: string, _projectId: string) {}
+  public async setUserProject(_userId: string, _projectId: string) {}
 }

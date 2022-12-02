@@ -11,23 +11,14 @@ import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { NavigationButton } from '../components/ProjectDetail/NavigationButton/NavigationButton';
 import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
-import { LocalRealtimeDatabaseRepository } from '../repository/realtimeDatabase/localRealtimeDatabaseRepository';
-import { useAuth } from '../store/auth/useAuth';
 import { Card, CardType } from '../components/Project/Card/Card';
-
-const database = new LocalRealtimeDatabaseRepository();
+import { useProject } from '../hooks/useProject';
 
 export const ProjectDetail = () => {
   const { params } = useRoute<RouteProp<ProjectRootStackParamList>>();
-  const { user } = useAuth();
+  const { project } = useProject(params.id);
 
-  if (!params || !user) {
-    return <ErrorDisplay />;
-  }
-
-  const data = database.getUserProject(user.id, params.id);
-
-  if (!data) {
+  if (!params) {
     return <ErrorDisplay />;
   }
 
@@ -36,14 +27,14 @@ export const ProjectDetail = () => {
       <NavigationButton />
       <Spacer space={'m'} direction={'bottom'} />
 
-      <TitleSection title={data.title} subtitle={data.subtitle} />
+      <TitleSection title={project.title} subtitle={project.subtitle} />
       <Spacer space={'xl'} direction={'bottom'} />
 
-      <TaskSection tasks={data.tasks} />
+      <TaskSection tasks={project.tasks} />
 
       <ScrollView>
         <Spacer space={'ml'} />
-        {data.tasks?.map(task => (
+        {project.tasks?.map(task => (
           <React.Fragment key={task.id}>
             <Card
               pressHandler={() => null}

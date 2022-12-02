@@ -10,7 +10,7 @@ export class LocalRealtimeDatabaseRepository
     super();
   }
 
-  public getAllUserProjects(id: string) {
+  public async getAllUserProjects(id: string) {
     return mockProjectData[id].projects.map(project => {
       const totalTasks = project.tasks?.length || 0;
       const tasksCompleted =
@@ -26,14 +26,14 @@ export class LocalRealtimeDatabaseRepository
     });
   }
 
-  public getUserProject(userId: string, projectId: string) {
-    const projects = this.getAllUserProjects(userId);
+  public async getUserProject(userId: string, projectId: string) {
+    const projects = await this.getAllUserProjects(userId);
 
-    return projects.find(project => project.id === projectId);
+    return projects.find(project => project.id === projectId) ?? null;
   }
 
   // TODO
-  public setUserProject(userId: string, projectId: string) {
+  public async setUserProject(userId: string, projectId: string) {
     console.log(userId, projectId);
   }
 }

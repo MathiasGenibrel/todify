@@ -7,8 +7,7 @@ import { Card } from '../Card/Card';
 
 import { ProjectRootStackParamList } from '../../../views/Project';
 import { spacings } from '../../../styles/theme';
-import { LocalRealtimeDatabaseRepository } from '../../../repository/realtimeDatabase/localRealtimeDatabaseRepository';
-import { useAuth } from '../../../store/auth/useAuth';
+import { useProjects } from '../../../hooks/useProjects';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,18 +15,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const database = new LocalRealtimeDatabaseRepository();
-
 export const ListProject = () => {
   const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
-  const { user } = useAuth();
+  const { projects } = useProjects();
 
   // TODO use a real error display
-  if (!user) {
-    return <Text>NO USER</Text>;
+  if (!projects.length) {
+    return <Text>NO PROJECTS</Text>;
   }
-
-  const projects = database.getAllUserProjects(user.id);
 
   const clickHandler = (id: string) => {
     navigation.navigate('detail', { id });

@@ -24,7 +24,11 @@ export const AuthStore: FC<AuthStoreProps> = ({ children }) => {
     dispatch({ type: ActionType.LOGIN, payload: user });
   const logoutUser = () => dispatch({ type: ActionType.LOGOUT });
 
-  const values = { ...auth };
+  let values = { ...auth };
+  if (auth.isLogged) {
+    values = { ...auth, user: auth.user as UserState };
+  }
+
   const dispatcherValue = { loginUser, logoutUser };
 
   return (

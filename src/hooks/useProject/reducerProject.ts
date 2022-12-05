@@ -1,6 +1,7 @@
 import { ProjectsUserData } from '../../repository/realtimeDatabase/realtimeDatabaseRepository';
 import { ActionProps, ActionType } from './useProject.types';
 
+// TODO Refactor this bullshit
 export const reducerProject = (
   state: ProjectsUserData | null,
   action: ActionProps,

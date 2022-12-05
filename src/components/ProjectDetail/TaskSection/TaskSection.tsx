@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useReducer } from 'react';
 import { Text, View } from 'react-native';
 
 import { Button, EButton } from '../../atoms/Button/Button';
@@ -9,6 +9,8 @@ import { TaskContent } from '../../../types/firebaseDB.types';
 import { ProgressSection } from '../ProgressSection/ProgressSection';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
+import { ModalView } from '../../atoms/Modal/Modal';
+import { CreateTaskForm } from '../CreateTaskForm/CreateTaskForm';
 
 type TaskSection = {
   tasks?: TaskContent[];
@@ -16,6 +18,8 @@ type TaskSection = {
 };
 
 export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
+  const [modalIsOpen, toggleModalView] = useReducer(current => !current, false);
+
   const totalTask = tasks?.length ?? 0;
   const numberDone = tasks?.filter(task => task.isDone).length ?? 0;
   const currentProgression = Math.round((numberDone / totalTask) * 100) || 0;
@@ -23,17 +27,6 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
   const taskRemainingToDisplay = totalTask
     ? `${numberDone}/${totalTask}`
     : 'No tasks defined';
-
-  const buttonPressHandler = () => {
-    createTaskHandler({
-      id: 'randomID',
-      name: 'Récupérer la MT',
-      status: { name: 'todo' },
-      isDone: false,
-      description: 'Allez récupérer la moto chez Yamaha 66',
-      dateTarget: new Date('2022-12-13'),
-    });
-  };
 
   return (
     <>
@@ -50,7 +43,7 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
           <Button
             text={'New Task'}
             type={EButton.SECONDARY}
-            pressHandler={buttonPressHandler}
+            pressHandler={toggleModalView}
             iconName={'plus'}
             iconSize={12}
             marginHorizontal={0}
@@ -58,6 +51,13 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
           />
         </View>
       </View>
+
+      <ModalView toggle={toggleModalView} isOpen={modalIsOpen}>
+        <CreateTaskForm
+          createTaskHandler={createTaskHandler}
+          toggleModalView={toggleModalView}
+        />
+      </ModalView>
     </>
   );
 };

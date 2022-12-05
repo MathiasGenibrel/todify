@@ -28,7 +28,7 @@ export const Button: FC<ButtonProps> = ({
   pressHandler,
   iconName,
   iconSize,
-  marginHorizontal = 30,
+  marginHorizontal = 0,
   gap = 16,
 }) => {
   const customStyle = StyleSheet.create({

@@ -4,7 +4,6 @@ import { colors, fontSizes, spacings } from '../../../styles/theme';
 export const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginHorizontal: spacings['3xl'],
     borderRadius: spacings.s,
     overflow: 'hidden',
   },
@@ -13,11 +12,12 @@ export const styles = StyleSheet.create({
     flex: 1,
     color: colors.text,
     fontSize: fontSizes.xl,
-    marginLeft: spacings.s,
     paddingLeft: spacings.l,
+    paddingVertical: spacings.ml,
   },
   icon: {
     backgroundColor: '#fff',
     padding: spacings.ml,
+    marginRight: spacings.s,
   },
 });

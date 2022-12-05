@@ -10,7 +10,7 @@ import { styles } from './Input.styles';
 import { normalize } from '../../../styles/normalize';
 import { colors } from '../../../styles/theme';
 
-interface InputProps
+export interface InputProps
   extends Pick<TextInputIOSProps, 'textContentType'>,
     Pick<TextInputProps, 'keyboardType' | 'secureTextEntry'> {
   placeholder: string;

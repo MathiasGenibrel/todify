@@ -17,7 +17,7 @@ import { useProject } from '../hooks/useProject/useProject';
 export const ProjectDetail = () => {
   const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
-  const { project, deleteTask } = useProject(params.id);
+  const { project, deleteTask, createTask } = useProject(params.id);
 
   if (!params || !project) {
     return <ErrorDisplay />;
@@ -31,7 +31,7 @@ export const ProjectDetail = () => {
       <TitleSection title={project.title} subtitle={project.subtitle} />
       <Spacer space={'xl'} direction={'bottom'} />
 
-      <TaskSection tasks={project.tasks} />
+      <TaskSection tasks={project.tasks} createTaskHandler={createTask} />
 
       <ScrollView>
         <Spacer space={'ml'} />

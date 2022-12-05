@@ -8,6 +8,9 @@ import { ActionType } from './useProject.types';
 
 const projectDB = new LocalRealtimeDatabaseRepository();
 
+export type CreateOrUpdateTask = (taskContent: TaskContent) => void;
+export type DeleteTask = (taskId: string) => void;
+
 export const useProject = (projectId: string) => {
   const [project, dispatch] = useReducer(reducerProject, null);
   const { projects, updateProject } = useProjects();
@@ -27,15 +30,15 @@ export const useProject = (projectId: string) => {
     });
   }, [user.id, projectId, projects]);
 
-  const createTask = (taskContent: TaskContent) => {
+  const createTask: CreateOrUpdateTask = (taskContent: TaskContent) => {
     dispatch({ type: ActionType.CREATE_TASK, payload: { task: taskContent } });
   };
 
-  const updateTask = (taskContent: TaskContent) => {
+  const updateTask: CreateOrUpdateTask = (taskContent: TaskContent) => {
     dispatch({ type: ActionType.UPDATE_TASK, payload: { task: taskContent } });
   };
 
-  const deleteTask = (taskId: string) => {
+  const deleteTask: DeleteTask = (taskId: string) => {
     dispatch({ type: ActionType.DELETE_TASK, payload: { taskId } });
   };
 

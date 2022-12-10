@@ -5,19 +5,23 @@ import { useProjects } from '../useProjects';
 import { TaskContent } from '../../types/firebaseDB.types';
 import { reducerProject } from './reducerProject';
 import { ActionType } from './useProject.types';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { ProjectRootStackParamList, RootName } from '../../views/Project';
 
 const projectDB = new LocalRealtimeDatabaseRepository();
 
 export type CreateOrUpdateTask = (taskContent: TaskContent) => void;
 export type DeleteTask = (taskId: string) => void;
 
-export const useProject = (projectId: string) => {
+export const useProject = () => {
+  const { params } =
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
   const [project, dispatch] = useReducer(reducerProject, null);
   const { projects, updateProject } = useProjects();
   const user = useRequiredAuth();
 
   useEffect(() => {
-    projectDB.getUserProject(user.id, projectId).then(currentProject => {
+    projectDB.getUserProject(user.id, params.id).then(currentProject => {
       if (!currentProject) {
         throw new Error(
           'An error occurred with this project.\n Try again later.',
@@ -28,7 +32,7 @@ export const useProject = (projectId: string) => {
         payload: { project: currentProject },
       });
     });
-  }, [user.id, projectId, projects]);
+  }, [user.id, params, projects]);
 
   const createTask: CreateOrUpdateTask = (taskContent: TaskContent) => {
     dispatch({ type: ActionType.CREATE_TASK, payload: { task: taskContent } });

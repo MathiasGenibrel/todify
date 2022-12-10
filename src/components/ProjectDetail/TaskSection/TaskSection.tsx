@@ -56,6 +56,7 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
         <CreateTaskForm
           createTaskHandler={createTaskHandler}
           toggleModalView={toggleModalView}
+          tasksStatus={tasks?.map(task => task.status)}
         />
       </ModalView>
     </>

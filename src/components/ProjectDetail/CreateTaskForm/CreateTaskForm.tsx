@@ -1,25 +1,45 @@
+// noinspection SpellCheckingInspection
+
 import React, { DispatchWithoutAction, FC, useState } from 'react';
 
 import { uuidv4 } from '@firebase/util';
 
+import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
+
 import { InputWithLayout } from '../../atoms/InputWithLayout/InputWithLayout';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { Button, EButton } from '../../atoms/Button/Button';
-import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
+import { Dropdown } from '../../atoms/Dropdown/Dropdown';
+import { StatusContent } from '../../../types/firebaseDB.types';
+import { removeDuplicate } from '../../atoms/Modal/removeDuplicate';
+import { sortArrayOfObject } from '../../../helpers/sortArrayOfObject';
 
 type CreateTaskFormProps = {
   createTaskHandler: CreateOrUpdateTask;
   toggleModalView: DispatchWithoutAction;
+  tasksStatus?: StatusContent[];
 };
+
+const data: StatusContent[] = [
+  { name: 'open' },
+  { name: 'todo' },
+  { name: 'close' },
+];
 
 export const CreateTaskForm: FC<CreateTaskFormProps> = ({
   createTaskHandler,
   toggleModalView,
+  tasksStatus = [],
 }) => {
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [date, setDate] = useState('');
+
+  const statusList = sortArrayOfObject<StatusContent>(
+    removeDuplicate<StatusContent>([...tasksStatus, ...data]),
+    'name',
+  );
 
   // Todo update this form to use best input Type of ux library.
   // Add color picker and icon picker for status
@@ -42,11 +62,11 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
       />
       <Spacer space={'m'} />
 
-      <InputWithLayout
-        layoutText={'Status :'}
-        value={status}
-        setValue={setStatus}
-        placeholder={'todo'}
+      <Dropdown
+        label={'Status :'}
+        state={status}
+        setState={setStatus}
+        data={statusList}
       />
       <Spacer space={'m'} />
 

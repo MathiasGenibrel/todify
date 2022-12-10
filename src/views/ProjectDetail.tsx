@@ -1,8 +1,5 @@
 import React from 'react';
 import { ScrollView, View } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
-
-import { ProjectRootStackParamList, RootName } from './Project';
 
 import { globalView } from '../components/ProjectDetail/styles';
 
@@ -15,11 +12,9 @@ import { Card, CardType } from '../components/Project/Card/Card';
 import { useProject } from '../hooks/useProject/useProject';
 
 export const ProjectDetail = () => {
-  const { params } =
-    useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
-  const { project, deleteTask, createTask } = useProject(params.id);
+  const { project, deleteTask, createTask } = useProject();
 
-  if (!params || !project) {
+  if (!project) {
     return <ErrorDisplay />;
   }
 

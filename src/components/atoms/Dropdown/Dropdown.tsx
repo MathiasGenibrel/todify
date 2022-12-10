@@ -41,6 +41,8 @@ export const Dropdown: FC<DropdownProps> = ({
   setState,
   data,
 }) => {
+  const currentIconStatus = data.find(element => element.name === state);
+
   return (
     <View>
       <Text style={styles.label}>{label}</Text>
@@ -53,7 +55,7 @@ export const Dropdown: FC<DropdownProps> = ({
         onChange={item => setState(item.name)}
         renderLeftIcon={() => (
           <Icon
-            name={'help-circle-outline'}
+            name={currentIconStatus?.iconName ?? 'help-circle-outline'}
             size={normalize(22)}
             color={colors.text}
           />

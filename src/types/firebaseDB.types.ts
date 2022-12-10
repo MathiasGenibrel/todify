@@ -13,7 +13,7 @@ export type TaskContent = {
   description: string;
   isDone: boolean;
   status: StatusContent;
-  dateTarget?: Date;
+  dateTarget: Date | null;
   dateCompleted?: Date;
 };
 

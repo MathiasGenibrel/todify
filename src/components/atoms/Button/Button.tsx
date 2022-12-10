@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { styles } from './Button.styles';
+import { baseStyles, styles } from './Button.styles';
 import { normalize } from '../../../styles/normalize';
 import { PressHandler } from '../../../types/PressHandler';
 
@@ -20,6 +20,7 @@ type ButtonProps = {
   iconSize?: number;
   marginHorizontal?: number;
   gap?: number;
+  disabled?: boolean;
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -30,6 +31,7 @@ export const Button: FC<ButtonProps> = ({
   iconSize,
   marginHorizontal = 0,
   gap = 16,
+  disabled,
 }) => {
   const customStyle = StyleSheet.create({
     container: {
@@ -45,6 +47,11 @@ export const Button: FC<ButtonProps> = ({
     customStyle.container,
   );
 
+  const containerDisabledStyle = StyleSheet.compose(
+    styles[type].container,
+    baseStyles.disabled,
+  );
+
   const iconStyle = StyleSheet.compose(styles[type].icon, customStyle.icon);
 
   const icon = iconName && (
@@ -52,7 +59,10 @@ export const Button: FC<ButtonProps> = ({
   );
 
   return (
-    <TouchableOpacity style={containerStyle} onPress={pressHandler}>
+    <TouchableOpacity
+      style={disabled ? containerDisabledStyle : containerStyle}
+      onPress={pressHandler}
+      disabled={disabled}>
       {icon}
       <Text style={styles[type].text}>{text}</Text>
     </TouchableOpacity>

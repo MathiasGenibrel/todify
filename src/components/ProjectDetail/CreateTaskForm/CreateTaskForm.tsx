@@ -6,25 +6,21 @@ import { uuidv4 } from '@firebase/util';
 
 import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
 
+import { sortArrayOfObject } from '../../../helpers/sortArrayOfObject';
+import { defaultStatus } from './defaultStatus';
+
 import { InputWithLayout } from '../../atoms/InputWithLayout/InputWithLayout';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { Button, EButton } from '../../atoms/Button/Button';
 import { Dropdown } from '../../atoms/Dropdown/Dropdown';
 import { StatusContent } from '../../../types/firebaseDB.types';
-import { removeDuplicate } from '../../atoms/Modal/removeDuplicate';
-import { sortArrayOfObject } from '../../../helpers/sortArrayOfObject';
+import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
 type CreateTaskFormProps = {
   createTaskHandler: CreateOrUpdateTask;
   toggleModalView: DispatchWithoutAction;
   tasksStatus?: StatusContent[];
 };
-
-const data: StatusContent[] = [
-  { name: 'open' },
-  { name: 'todo' },
-  { name: 'close' },
-];
 
 export const CreateTaskForm: FC<CreateTaskFormProps> = ({
   createTaskHandler,
@@ -33,11 +29,29 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
 }) => {
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState<StatusContent | null>(null);
   const [date, setDate] = useState('');
 
+  const submitHandler = () => {
+    if (!status) {
+      return;
+    }
+
+    createTaskHandler({
+      id: uuidv4(),
+      name: taskName,
+      description: description,
+      status: status,
+      dateTarget: Date.parse(date) ? new Date(date) : null,
+      isDone: false,
+    });
+    toggleModalView();
+  };
+
+  const userCantSubmit = !taskName || !description || !status;
+
   const statusList = sortArrayOfObject<StatusContent>(
-    removeDuplicate<StatusContent>([...tasksStatus, ...data]),
+    removeDuplicate<StatusContent>([...tasksStatus, ...defaultStatus]),
     'name',
   );
 
@@ -81,17 +95,8 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
       <Button
         text={'Create'}
         type={EButton.PRIMARY}
-        pressHandler={() => {
-          createTaskHandler({
-            id: uuidv4(),
-            name: taskName,
-            description: description,
-            status: { name: status.toLowerCase() },
-            dateTarget: new Date(date),
-            isDone: false,
-          });
-          toggleModalView();
-        }}
+        pressHandler={submitHandler}
+        disabled={userCantSubmit}
       />
     </>
   );

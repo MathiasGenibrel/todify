@@ -10,6 +10,7 @@ export const baseStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    opacity: 1,
   },
   text: {
     fontSize: fontSizes.s,
@@ -18,6 +19,9 @@ export const baseStyles = StyleSheet.create({
   icon: {
     marginRight: normalize(16),
     color: colors.text,
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });
 

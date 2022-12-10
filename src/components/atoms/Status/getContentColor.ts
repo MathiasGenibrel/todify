@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../../styles/theme';
 import { styles } from './Status.styles';
-import { StatusContent, StatusDefaultCase } from './Status';
+import { StatusDefaultCase } from './Status';
+import { StatusContent } from '../../../types/firebaseDB.types';
 
 const getColor = (status: StatusContent) => {
   if (status.color) {

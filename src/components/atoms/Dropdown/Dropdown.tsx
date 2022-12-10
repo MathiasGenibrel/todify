@@ -30,8 +30,8 @@ export type Data = { label: string; value: string };
 
 type DropdownProps = {
   label: string;
-  state: string;
-  setState: Dispatch<SetStateAction<string>>;
+  state: StatusContent | null;
+  setState: Dispatch<SetStateAction<StatusContent>>;
   data: StatusContent[];
 };
 
@@ -41,7 +41,7 @@ export const Dropdown: FC<DropdownProps> = ({
   setState,
   data,
 }) => {
-  const currentIconStatus = data.find(element => element.name === state);
+  const currentIconStatus = data.find(element => element.name === state?.name);
 
   return (
     <View>
@@ -52,7 +52,7 @@ export const Dropdown: FC<DropdownProps> = ({
         valueField="name"
         value={state}
         placeholder={'Task value'}
-        onChange={item => setState(item.name)}
+        onChange={item => setState(item)}
         renderLeftIcon={() => (
           <Icon
             name={currentIconStatus?.iconName ?? 'help-circle-outline'}
@@ -63,7 +63,9 @@ export const Dropdown: FC<DropdownProps> = ({
         style={styles.container}
         placeholderStyle={styles.text}
         selectedTextStyle={styles.text}
-        renderItem={item => <Item item={item} selectedItem={state} />}
+        renderItem={item => (
+          <Item item={item} selectedItem={state?.name ?? ''} />
+        )}
         search
         searchPlaceholder={'Status...'}
       />

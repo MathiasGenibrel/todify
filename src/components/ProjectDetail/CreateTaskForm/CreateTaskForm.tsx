@@ -1,3 +1,4 @@
+import { Text } from 'react-native';
 import React, { useState } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
@@ -13,15 +14,15 @@ import { Dropdown } from '../../atoms/Dropdown/Dropdown';
 import { ModalView } from '../../atoms/Modal/Modal';
 
 import { StatusContent } from '../../../types/firebaseDB.types';
+import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
-import { ProjectRootStackParamList } from '../../../router/ProjectRouter';
-import { Text } from 'react-native';
 import { styles } from './CreateTaskForm.styles';
 
 export const CreateTaskForm = () => {
-  const router = useRoute<RouteProp<ProjectRootStackParamList, 'createTask'>>();
+  const router =
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.CREATE_TASK>>();
   const navigation = useNavigation();
   const { createTaskHandler, tasksStatus = [] } = router.params;
 

@@ -11,21 +11,26 @@ import { DropdownProps } from './Dropdown.types';
 import { styles } from './Dropdown.styles';
 import { normalize } from '../../../styles/normalize';
 import { colors } from '../../../styles/theme';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 export const Dropdown: FC<DropdownProps> = ({
   label,
   state,
   setState,
   data,
-  createTaskPressHandler,
 }) => {
   const currentIconStatus = data.find(element => element.name === state?.name);
   const [searchText, setSearchText] = useState('');
+  const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
 
   const buttonContent: ButtonContent = {
     type: 'button',
     name: 'Create Status',
-    pressHandler: () => createTaskPressHandler(),
+    pressHandler: () => {
+      navigation.goBack();
+      navigation.navigate(RootName.CREATE_STATUS, { statusName: searchText });
+    },
   };
 
   return (

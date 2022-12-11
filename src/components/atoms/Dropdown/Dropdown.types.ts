@@ -1,4 +1,4 @@
-import { Dispatch, DispatchWithoutAction, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { StatusContent } from '../../../types/firebaseDB.types';
 
 export type DropdownProps = {
@@ -6,5 +6,4 @@ export type DropdownProps = {
   state: StatusContent | null;
   setState: Dispatch<SetStateAction<StatusContent>>;
   data: StatusContent[];
-  createTaskPressHandler: DispatchWithoutAction;
 };

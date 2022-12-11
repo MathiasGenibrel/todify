@@ -54,10 +54,6 @@ export const CreateTaskForm = () => {
     'name',
   );
 
-  // TODO update this form to use best input Type of ux library.
-  // Add color picker and icon picker for status
-  // Add date picker
-  // Use text area for description
   return (
     <ModalView>
       <Text style={styles.title}>Creating a task</Text>
@@ -87,7 +83,6 @@ export const CreateTaskForm = () => {
         state={status}
         setState={setStatus}
         data={statusList}
-        createTaskPressHandler={() => null}
       />
       <Spacer space={'m'} />
 

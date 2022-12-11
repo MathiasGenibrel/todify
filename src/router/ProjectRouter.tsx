@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ListProject } from '../components/Project/ListProject/ListProject';
 import { ProjectDetail } from '../views/ProjectDetail';
 import { CreateTaskForm } from '../components/ProjectDetail/CreateTaskForm/CreateTaskForm';
+import { CreateStatusForm } from '../components/ProjectDetail/CreateStatusForm/CreateStatusForm';
 
 import { ProjectRootStackParamList, RootName } from '../views/Project';
 
@@ -28,6 +29,11 @@ export const ProjectRouter = () => {
         <Stack.Screen
           name={RootName.CREATE_TASK}
           component={CreateTaskForm}
+          options={{ header: () => null }}
+        />
+        <Stack.Screen
+          name={RootName.CREATE_STATUS}
+          component={CreateStatusForm}
           options={{ header: () => null }}
         />
       </Stack.Group>

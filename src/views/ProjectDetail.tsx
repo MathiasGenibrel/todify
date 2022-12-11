@@ -33,7 +33,7 @@ export const ProjectDetail = () => {
         {project.tasks?.map(task => (
           <React.Fragment key={task.id}>
             <Card
-              pressHandler={() => null}
+              pressHandler={() => null /* TODO à changer */}
               longPressDeleteAction={() => deleteTask(task.id)}
               title={task.name}
               subtitle={task.description}

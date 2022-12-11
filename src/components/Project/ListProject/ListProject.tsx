@@ -5,7 +5,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { Card } from '../Card/Card';
 
-import { ProjectRootStackParamList } from '../../../views/Project';
+import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 import { spacings } from '../../../styles/theme';
 import { useProjects } from '../../../hooks/useProjects';
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 export const ListProject = () => {
   const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
-  const { projects } = useProjects();
+  const { projects, deleteProject } = useProjects();
 
   // TODO use a real error display
   if (!projects.length) {
@@ -25,7 +25,7 @@ export const ListProject = () => {
   }
 
   const clickHandler = (id: string) => {
-    navigation.navigate('detail', { id });
+    navigation.navigate(RootName.DETAIL, { id });
   };
 
   return (
@@ -33,7 +33,11 @@ export const ListProject = () => {
       <Spacer space={'xl'} direction={'bottom'} />
       {projects.map(project => (
         <React.Fragment key={project.id}>
-          <Card {...project} pressHandler={() => clickHandler(project.id)} />
+          <Card
+            {...project}
+            pressHandler={() => clickHandler(project.id)}
+            longPressDeleteAction={() => deleteProject(project.id)}
+          />
           <Spacer space={'l'} direction={'bottom'} />
         </React.Fragment>
       ))}

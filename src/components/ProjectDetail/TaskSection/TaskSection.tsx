@@ -1,4 +1,4 @@
-import React, { FC, useReducer } from 'react';
+import React, { FC } from 'react';
 import { Text, View } from 'react-native';
 
 import { Button, EButton } from '../../atoms/Button/Button';
@@ -8,9 +8,9 @@ import { styles } from './TaskSection.styles';
 import { TaskContent } from '../../../types/firebaseDB.types';
 import { ProgressSection } from '../ProgressSection/ProgressSection';
 import { Spacer } from '../../atoms/Spacer/Spacer';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
-import { ModalView } from '../../atoms/Modal/Modal';
-import { CreateTaskForm } from '../CreateTaskForm/CreateTaskForm';
+import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 type TaskSection = {
   tasks?: TaskContent[];
@@ -18,14 +18,7 @@ type TaskSection = {
 };
 
 export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
-  const [taskModalIsOpen, toggleTaskModalView] = useReducer(
-    current => !current,
-    false,
-  );
-  const [statusModalIsOpen, toggleStatusModalView] = useReducer(
-    current => !current,
-    false,
-  );
+  const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
 
   const totalTask = tasks?.length ?? 0;
   const numberDone = tasks?.filter(task => task.isDone).length ?? 0;
@@ -50,7 +43,12 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
           <Button
             text={'New Task'}
             type={EButton.SECONDARY}
-            pressHandler={toggleTaskModalView}
+            pressHandler={() =>
+              navigation.navigate(RootName.CREATE_TASK, {
+                createTaskHandler,
+                tasksStatus: tasks?.map(task => task.status),
+              })
+            }
             iconName={'plus'}
             iconSize={12}
             marginHorizontal={0}
@@ -58,15 +56,6 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
           />
         </View>
       </View>
-
-      <ModalView isOpen={taskModalIsOpen} toggle={toggleTaskModalView}>
-        <CreateTaskForm
-          createTaskHandler={createTaskHandler}
-          toggleCurrentModalView={toggleTaskModalView}
-          toggleStatusModalView={toggleStatusModalView}
-          tasksStatus={tasks?.map(task => task.status)}
-        />
-      </ModalView>
     </>
   );
 };

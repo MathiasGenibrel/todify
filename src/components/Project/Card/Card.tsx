@@ -19,7 +19,7 @@ export type CardProps = {
   subtitle: string;
   status: StatusContent;
   currentProgression: number;
-  date?: Date;
+  date: Date | null;
   cardType?: CardType;
 };
 

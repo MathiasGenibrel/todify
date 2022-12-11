@@ -1,8 +1,7 @@
-import React, { DispatchWithoutAction, FC, useState } from 'react';
+import React, { useState } from 'react';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 
 import { uuidv4 } from '@firebase/util';
-
-import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
 
 import { sortArrayOfObject } from '../../../helpers/sortArrayOfObject';
 import { defaultStatus } from './defaultStatus';
@@ -11,22 +10,21 @@ import { InputWithLayout } from '../../atoms/InputWithLayout/InputWithLayout';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { Button, EButton } from '../../atoms/Button/Button';
 import { Dropdown } from '../../atoms/Dropdown/Dropdown';
+import { ModalView } from '../../atoms/Modal/Modal';
+
 import { StatusContent } from '../../../types/firebaseDB.types';
+
 import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
-type CreateTaskFormProps = {
-  createTaskHandler: CreateOrUpdateTask;
-  toggleCurrentModalView: DispatchWithoutAction;
-  toggleStatusModalView: DispatchWithoutAction;
-  tasksStatus?: StatusContent[];
-};
+import { ProjectRootStackParamList } from '../../../router/ProjectRouter';
+import { Text } from 'react-native';
+import { styles } from './CreateTaskForm.styles';
 
-export const CreateTaskForm: FC<CreateTaskFormProps> = ({
-  createTaskHandler,
-  toggleCurrentModalView,
-  toggleStatusModalView,
-  tasksStatus = [],
-}) => {
+export const CreateTaskForm = () => {
+  const router = useRoute<RouteProp<ProjectRootStackParamList, 'createTask'>>();
+  const navigation = useNavigation();
+  const { createTaskHandler, tasksStatus = [] } = router.params;
+
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<StatusContent | null>(null);
@@ -45,7 +43,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
       dateTarget: Date.parse(date) ? new Date(date) : null,
       isDone: false,
     });
-    toggleCurrentModalView();
+    navigation.goBack();
   };
 
   const userCantSubmit = !taskName || !description || !status;
@@ -55,12 +53,18 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
     'name',
   );
 
-  // Todo update this form to use best input Type of ux library.
+  // TODO update this form to use best input Type of ux library.
   // Add color picker and icon picker for status
   // Add date picker
   // Use text area for description
   return (
-    <>
+    <ModalView>
+      <Text style={styles.title}>Creating a task</Text>
+      <Text style={styles.subtitle}>
+        Nothing stains and nothing washes like blood.
+      </Text>
+      <Spacer space={'l'} />
+
       <InputWithLayout
         layoutText={'Task name :'}
         value={taskName}
@@ -82,7 +86,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
         state={status}
         setState={setStatus}
         data={statusList}
-        createTaskPressHandler={toggleStatusModalView}
+        createTaskPressHandler={() => null}
       />
       <Spacer space={'m'} />
 
@@ -100,6 +104,6 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
         pressHandler={submitHandler}
         disabled={userCantSubmit}
       />
-    </>
+    </ModalView>
   );
 };

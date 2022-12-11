@@ -1,5 +1,3 @@
-// noinspection SpellCheckingInspection
-
 import React, { DispatchWithoutAction, FC, useState } from 'react';
 
 import { uuidv4 } from '@firebase/util';
@@ -18,13 +16,15 @@ import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
 type CreateTaskFormProps = {
   createTaskHandler: CreateOrUpdateTask;
-  toggleModalView: DispatchWithoutAction;
+  toggleCurrentModalView: DispatchWithoutAction;
+  toggleStatusModalView: DispatchWithoutAction;
   tasksStatus?: StatusContent[];
 };
 
 export const CreateTaskForm: FC<CreateTaskFormProps> = ({
   createTaskHandler,
-  toggleModalView,
+  toggleCurrentModalView,
+  toggleStatusModalView,
   tasksStatus = [],
 }) => {
   const [taskName, setTaskName] = useState('');
@@ -45,7 +45,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
       dateTarget: Date.parse(date) ? new Date(date) : null,
       isDone: false,
     });
-    toggleModalView();
+    toggleCurrentModalView();
   };
 
   const userCantSubmit = !taskName || !description || !status;
@@ -68,6 +68,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
         placeholder={'Take a beer'}
       />
       <Spacer space={'m'} />
+
       <InputWithLayout
         layoutText={'Description :'}
         value={description}
@@ -81,6 +82,7 @@ export const CreateTaskForm: FC<CreateTaskFormProps> = ({
         state={status}
         setState={setStatus}
         data={statusList}
+        createTaskPressHandler={toggleStatusModalView}
       />
       <Spacer space={'m'} />
 

@@ -18,7 +18,14 @@ type TaskSection = {
 };
 
 export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
-  const [modalIsOpen, toggleModalView] = useReducer(current => !current, false);
+  const [taskModalIsOpen, toggleTaskModalView] = useReducer(
+    current => !current,
+    false,
+  );
+  const [statusModalIsOpen, toggleStatusModalView] = useReducer(
+    current => !current,
+    false,
+  );
 
   const totalTask = tasks?.length ?? 0;
   const numberDone = tasks?.filter(task => task.isDone).length ?? 0;
@@ -43,7 +50,7 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
           <Button
             text={'New Task'}
             type={EButton.SECONDARY}
-            pressHandler={toggleModalView}
+            pressHandler={toggleTaskModalView}
             iconName={'plus'}
             iconSize={12}
             marginHorizontal={0}
@@ -52,10 +59,11 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
         </View>
       </View>
 
-      <ModalView toggle={toggleModalView} isOpen={modalIsOpen}>
+      <ModalView isOpen={taskModalIsOpen} toggle={toggleTaskModalView}>
         <CreateTaskForm
           createTaskHandler={createTaskHandler}
-          toggleModalView={toggleModalView}
+          toggleCurrentModalView={toggleTaskModalView}
+          toggleStatusModalView={toggleStatusModalView}
           tasksStatus={tasks?.map(task => task.status)}
         />
       </ModalView>

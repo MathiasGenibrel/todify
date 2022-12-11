@@ -1,7 +1,6 @@
 import React from 'react';
 import { ProjectRouter } from '../router/ProjectRouter';
-import { CreateOrUpdateTask } from '../hooks/useProject/useProject';
-import { StatusContent } from '../types/firebaseDB.types';
+import { ProjectStoreProvider } from '../store/project/projectStore';
 
 export enum RootName {
   PROJECTS = 'projects',
@@ -13,15 +12,16 @@ export enum RootName {
 export type ProjectRootStackParamList = {
   [RootName.PROJECTS]: undefined;
   [RootName.DETAIL]: { id: string };
-  [RootName.CREATE_TASK]: {
-    createTaskHandler: CreateOrUpdateTask;
-    tasksStatus?: StatusContent[];
-  };
+  [RootName.CREATE_TASK]: { projectId: string };
   [RootName.CREATE_STATUS]?: {
     statusName?: string;
   };
 };
 
 export const Project = () => {
-  return <ProjectRouter />;
+  return (
+    <ProjectStoreProvider>
+      <ProjectRouter />
+    </ProjectStoreProvider>
+  );
 };

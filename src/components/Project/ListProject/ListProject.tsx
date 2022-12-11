@@ -7,7 +7,7 @@ import { Card } from '../Card/Card';
 
 import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 import { spacings } from '../../../styles/theme';
-import { useProjects } from '../../../hooks/useProjects';
+import { useProjectsStore } from '../../../store/project/useProjectsStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 export const ListProject = () => {
   const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
-  const { projects, deleteProject } = useProjects();
+  const { projects, deleteProject } = useProjectsStore();
 
   // TODO use a real error display
   if (!projects.length) {

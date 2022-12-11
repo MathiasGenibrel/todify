@@ -9,15 +9,14 @@ import { TaskContent } from '../../../types/firebaseDB.types';
 import { ProgressSection } from '../ProgressSection/ProgressSection';
 import { Spacer } from '../../atoms/Spacer/Spacer';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { CreateOrUpdateTask } from '../../../hooks/useProject/useProject';
 import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 type TaskSection = {
+  projectId: string;
   tasks?: TaskContent[];
-  createTaskHandler: CreateOrUpdateTask;
 };
 
-export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
+export const TaskSection: FC<TaskSection> = ({ projectId, tasks }) => {
   const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
 
   const totalTask = tasks?.length ?? 0;
@@ -44,10 +43,7 @@ export const TaskSection: FC<TaskSection> = ({ tasks, createTaskHandler }) => {
             text={'New Task'}
             type={EButton.SECONDARY}
             pressHandler={() =>
-              navigation.navigate(RootName.CREATE_TASK, {
-                createTaskHandler,
-                tasksStatus: tasks?.map(task => task.status),
-              })
+              navigation.navigate(RootName.CREATE_TASK, { projectId })
             }
             iconName={'plus'}
             iconSize={12}

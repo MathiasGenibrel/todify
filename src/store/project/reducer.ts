@@ -1,11 +1,6 @@
-import { useEffect, useReducer } from 'react';
-import { LocalRealtimeDatabaseRepository } from '../repository/realtimeDatabase/localRealtimeDatabaseRepository';
-import { ProjectsUserData } from '../repository/realtimeDatabase/realtimeDatabaseRepository';
-import { useRequiredAuth } from './useRequiredAuth';
+import { ProjectsUserData } from '../../repository/realtimeDatabase/realtimeDatabaseRepository';
 
-const projectDB = new LocalRealtimeDatabaseRepository();
-
-enum ActionType {
+export enum ActionType {
   INIT = 'init',
   CREATE = 'create',
   UPDATE = 'update',
@@ -24,7 +19,10 @@ type ActionProps = {
   payload: ActionPayload;
 };
 
-const reducerProject = (state: ProjectsUserData[], action: ActionProps) => {
+export const reducerProject = (
+  state: ProjectsUserData[],
+  action: ActionProps,
+) => {
   switch (action.type) {
     case ActionType.INIT:
       if (!action.payload.projectsList) {
@@ -76,37 +74,4 @@ const reducerProject = (state: ProjectsUserData[], action: ActionProps) => {
     default:
       return state;
   }
-};
-
-export const useProjects = () => {
-  const [projects, dispatch] = useReducer(reducerProject, []);
-  const user = useRequiredAuth();
-
-  useEffect(() => {
-    projectDB.getAllUserProjects(user.id).then(projectsList =>
-      dispatch({
-        type: ActionType.INIT,
-        payload: { projectsList },
-      }),
-    );
-  }, [user.id]);
-
-  const createProject = (userProject: ProjectsUserData) =>
-    dispatch({ type: ActionType.CREATE, payload: { project: userProject } });
-
-  const updateProject = (projectId: string, projectData: ProjectsUserData) => {
-    dispatch({
-      type: ActionType.UPDATE,
-      payload: { id: projectId, project: projectData },
-    });
-  };
-
-  const deleteProject = (projectId: string) => {
-    dispatch({
-      type: ActionType.DELETE,
-      payload: { id: projectId },
-    });
-  };
-
-  return { projects, createProject, updateProject, deleteProject };
 };

@@ -1,6 +1,7 @@
 import { Text } from 'react-native';
 import React, { useState } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { useProjectsStore } from '../../../store/project/useProjectsStore';
 
 import { uuidv4 } from '@firebase/util';
 
@@ -21,22 +22,25 @@ import { removeDuplicate } from '../../../helpers/removeDuplicate';
 import { styles } from './CreateTaskForm.styles';
 
 export const CreateTaskForm = () => {
-  const router =
+  const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.CREATE_TASK>>();
   const navigation = useNavigation();
-  const { createTaskHandler, tasksStatus = [] } = router.params;
+  const { getProjectById, createTask } = useProjectsStore();
 
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<StatusContent | null>(null);
   const [date, setDate] = useState('');
 
+  const project = getProjectById(params.projectId);
+  const tasks = project.tasks?.map(task => task.status);
+
   const submitHandler = () => {
     if (!status) {
       return;
     }
 
-    createTaskHandler({
+    createTask(params.projectId, {
       id: uuidv4(),
       name: taskName,
       description: description,
@@ -50,7 +54,7 @@ export const CreateTaskForm = () => {
   const userCantSubmit = !taskName || !description || !status;
 
   const statusList = sortArrayOfObject<StatusContent>(
-    removeDuplicate<StatusContent>([...tasksStatus, ...defaultStatus]),
+    removeDuplicate<StatusContent>([...(tasks ?? []), ...defaultStatus]),
     'name',
   );
 

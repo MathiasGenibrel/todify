@@ -9,10 +9,18 @@ import { NavigationButton } from '../components/ProjectDetail/NavigationButton/N
 import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
 import { Card, CardType } from '../components/Project/Card/Card';
-import { useProject } from '../hooks/useProject/useProject';
+import { useProjectsStore } from '../store/project/useProjectsStore';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { ProjectRootStackParamList, RootName } from './Project';
 
 export const ProjectDetail = () => {
-  const { project, deleteTask, createTask } = useProject();
+  const { params } =
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
+  const { projects, deleteTask } = useProjectsStore();
+
+  const project = projects.find(
+    currentProject => currentProject.id === params.id,
+  );
 
   if (!project) {
     return <ErrorDisplay />;
@@ -26,7 +34,7 @@ export const ProjectDetail = () => {
       <TitleSection title={project.title} subtitle={project.subtitle} />
       <Spacer space={'xl'} direction={'bottom'} />
 
-      <TaskSection tasks={project.tasks} createTaskHandler={createTask} />
+      <TaskSection projectId={params.id} tasks={project.tasks} />
 
       <ScrollView>
         <Spacer space={'ml'} />
@@ -34,7 +42,7 @@ export const ProjectDetail = () => {
           <React.Fragment key={task.id}>
             <Card
               pressHandler={() => null /* TODO à changer */}
-              longPressDeleteAction={() => deleteTask(task.id)}
+              longPressDeleteAction={() => deleteTask(params.id, task.id)}
               title={task.name}
               subtitle={task.description}
               date={task.dateTarget}

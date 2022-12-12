@@ -23,7 +23,16 @@ export const ListProject = () => {
 
   // TODO use a real error display
   if (!projects.length) {
-    return <Text>NO PROJECTS</Text>;
+    return (
+      <>
+        <Text>NO PROJECTS</Text>
+        <Button
+          pressHandler={() => navigation.navigate(RootName.PROJECT_HANDLER, {})}
+          text={'Create a Project'}
+          type={EButton.PRIMARY}
+        />
+      </>
+    );
   }
 
   const clickHandler = (id: string) => {

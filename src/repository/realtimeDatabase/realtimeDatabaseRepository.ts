@@ -10,11 +10,5 @@ export abstract class RealtimeDatabaseRepository {
   // @ts-ignore
   public async getAllUserProjects(_id: string): Promise<ProjectsUserData[]> {}
 
-  public async getUserProject(
-    _userId: string,
-    _projectId: string,
-    // @ts-ignore
-  ): Promise<?ProjectsUserData> {}
-
-  public async setUserProject(_userId: string, _projectId: string) {}
+  public async setUserProjects(_userId: string, _projectId: string) {}
 }

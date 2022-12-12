@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProjectRouter } from '../router/ProjectRouter';
 import { ProjectStoreProvider } from '../store/project/projectStore';
-import { TaskContentProps } from '../components/ProjectDetail/CreateTaskForm/TaskForm';
+import { TaskContentProps } from '../components/ProjectDetail/TaskForm/TaskForm';
 
 export enum RootName {
   PROJECTS = 'projects',

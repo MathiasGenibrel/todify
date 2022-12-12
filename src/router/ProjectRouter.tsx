@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ListProject } from '../components/Project/ListProject/ListProject';
 import { ProjectDetail } from '../views/ProjectDetail';
-import { TaskForm } from '../components/ProjectDetail/CreateTaskForm/TaskForm';
+import { TaskForm } from '../components/ProjectDetail/TaskForm/TaskForm';
 import { CreateStatusForm } from '../components/ProjectDetail/CreateStatusForm/CreateStatusForm';
 
 import { ProjectRootStackParamList, RootName } from '../views/Project';

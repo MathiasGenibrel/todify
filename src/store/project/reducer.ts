@@ -14,7 +14,7 @@ type ActionPayload = {
   projectUpdated?: Partial<ProjectsUserData>;
 };
 
-type ActionProps = {
+export type ActionProps = {
   type: ActionType;
   payload: ActionPayload;
 };

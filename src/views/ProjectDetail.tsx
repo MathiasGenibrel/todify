@@ -16,7 +16,9 @@ import { ProjectRootStackParamList, RootName } from './Project';
 export const ProjectDetail = () => {
   const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
-  const { projects, deleteTask } = useProjectsStore();
+  const { projects, taskHandler } = useProjectsStore();
+
+  const Task = taskHandler(params.id);
 
   const project = projects.find(
     currentProject => currentProject.id === params.id,
@@ -42,7 +44,7 @@ export const ProjectDetail = () => {
           <React.Fragment key={task.id}>
             <Card
               pressHandler={() => null /* TODO à changer */}
-              longPressDeleteAction={() => deleteTask(params.id, task.id)}
+              longPressDeleteAction={() => Task.delete(task.id)}
               title={task.name}
               subtitle={task.description}
               date={task.dateTarget}

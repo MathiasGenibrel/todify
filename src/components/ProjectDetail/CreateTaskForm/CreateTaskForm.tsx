@@ -25,7 +25,9 @@ export const CreateTaskForm = () => {
   const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.CREATE_TASK>>();
   const navigation = useNavigation();
-  const { getProjectById, createTask } = useProjectsStore();
+  const { getProjectById, taskHandler } = useProjectsStore();
+
+  const TaskHandler = taskHandler(params.projectId);
 
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
@@ -40,7 +42,7 @@ export const CreateTaskForm = () => {
       return;
     }
 
-    createTask(params.projectId, {
+    TaskHandler.create({
       id: uuidv4(),
       name: taskName,
       description: description,

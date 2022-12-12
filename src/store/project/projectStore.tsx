@@ -2,6 +2,7 @@ import React, { createContext, FC } from 'react';
 import { ProjectsUserData } from '../../repository/realtimeDatabase/realtimeDatabaseRepository';
 import { useProjects } from './useProjects';
 import { TaskContent } from '../../types/firebaseDB.types';
+import { Task } from './Handler/Task';
 
 export type CreateOrUpdateTask = (id: string, taskContent: TaskContent) => void;
 export type DeleteTask = (id: string, taskId: string) => void;
@@ -12,9 +13,7 @@ type ProjectContextValue = {
   createProject: (userProject: ProjectsUserData) => void;
   updateProject: (projectId: string, projectData: ProjectsUserData) => void;
   deleteProject: (projectId: string) => void;
-  createTask: CreateOrUpdateTask;
-  updateTask: CreateOrUpdateTask;
-  deleteTask: DeleteTask;
+  taskHandler: (projectId: string) => Task;
 };
 
 // tasksStatus: tasks?.map(task => task.status)

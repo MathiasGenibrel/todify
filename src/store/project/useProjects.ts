@@ -5,8 +5,7 @@ import { useRequiredAuth } from '../../hooks/useRequiredAuth';
 import { ActionType, reducerProject } from './reducer';
 import { LocalRealtimeDatabaseRepository } from '../../repository/realtimeDatabase/localRealtimeDatabaseRepository';
 import { ProjectsUserData } from '../../repository/realtimeDatabase/realtimeDatabaseRepository';
-import { TaskContent } from '../../types/firebaseDB.types';
-import { CreateOrUpdateTask, DeleteTask } from './projectStore';
+import { Task } from './Handler/Task';
 
 const projectDB = new LocalRealtimeDatabaseRepository();
 
@@ -50,55 +49,8 @@ export const useProjects = () => {
     return { ...projectToUpdate };
   };
 
-  const createTask: CreateOrUpdateTask = (
-    id: string,
-    taskContent: TaskContent,
-  ) => {
-    const project = getProjectById(id);
-
-    project.tasks = project.tasks
-      ? [...project.tasks, taskContent]
-      : [taskContent];
-
-    dispatch({
-      type: ActionType.UPDATE,
-      payload: { id, projectUpdated: project },
-    });
-  };
-
-  const updateTask: CreateOrUpdateTask = (id, taskContent: TaskContent) => {
-    const project = getProjectById(id);
-
-    if (!project.tasks) {
-      throw new Error('Cannot update a task, if there is none');
-    }
-
-    project.tasks = [
-      ...project.tasks.filter(task => task.id !== taskContent.id),
-      taskContent,
-    ];
-
-    dispatch({
-      type: ActionType.UPDATE,
-      payload: { id, projectUpdated: project },
-    });
-  };
-
-  const deleteTask: DeleteTask = (id: string, taskId: string) => {
-    const project = getProjectById(id);
-
-    if (!project.tasks) {
-      throw new Error('Cannot delete a task, if there is none');
-    }
-
-    project.tasks = project.tasks.filter(task => task.id !== taskId);
-    project.totalTasks = project.tasks.length;
-
-    dispatch({
-      type: ActionType.UPDATE,
-      payload: { id, projectUpdated: project },
-    });
-  };
+  const taskHandler = (projectId: string) =>
+    new Task(dispatch, getProjectById, projectId);
 
   return {
     projects,
@@ -109,8 +61,6 @@ export const useProjects = () => {
     deleteProject,
 
     // Task Handler
-    createTask,
-    updateTask,
-    deleteTask,
+    taskHandler,
   };
 };

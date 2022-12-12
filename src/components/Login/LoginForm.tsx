@@ -12,8 +12,8 @@ import {
 } from '../../helpers/authSubmitHandler';
 
 export const LoginForm: FC = () => {
-  const [email, setEmail] = useState<string>('demo@demo.test');
-  const [password, setPassword] = useState<string>('Demodemo1');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const { loginUser } = useAuthDispatcher();
 
   return (

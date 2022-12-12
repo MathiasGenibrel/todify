@@ -11,8 +11,6 @@ type ProjectContextValue = {
   taskHandler: (projectId: string) => Task;
 };
 
-// tasksStatus: tasks?.map(task => task.status)
-
 export const ProjectStore = createContext<ProjectContextValue | null>(null);
 
 type ProjectStoreProviderProps = {

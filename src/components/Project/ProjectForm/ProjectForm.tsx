@@ -6,7 +6,6 @@ import { useProjectsStore } from '../../../store/project/useProjectsStore';
 import { uuidv4 } from '@firebase/util';
 
 import { sortArrayOfObject } from '../../../helpers/sortArrayOfObject';
-import { defaultStatus } from './defaultStatus';
 
 import { InputWithLayout } from '../../atoms/InputWithLayout/InputWithLayout';
 import { Spacer } from '../../atoms/Spacer/Spacer';
@@ -14,36 +13,31 @@ import { Button, EButton } from '../../atoms/Button/Button';
 import { Dropdown } from '../../atoms/Dropdown/Dropdown';
 import { ModalView } from '../../atoms/Modal/Modal';
 
-import { StatusContent, TaskContent } from '../../../types/firebaseDB.types';
+import { StatusContent } from '../../../types/firebaseDB.types';
 import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 import { removeDuplicate } from '../../../helpers/removeDuplicate';
+import { defaultStatus } from '../../ProjectDetail/TaskForm/defaultStatus';
+import { formStyle } from '../../ProjectDetail/TaskForm/CreateTaskForm.styles';
 
-import { formStyle } from './CreateTaskForm.styles';
-
-export type TaskContentProps = Partial<
-  Pick<TaskContent, 'id' | 'name' | 'description' | 'status' | 'dateTarget'>
->;
-
-export const TaskForm: FC = () => {
+export const ProjectForm: FC = () => {
   const { params } =
-    useRoute<RouteProp<ProjectRootStackParamList, RootName.TASK_HANDLER>>();
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.PROJECT_HANDLER>>();
   const navigation = useNavigation();
-  const { getProjectById, taskHandler } = useProjectsStore();
+  const { getProjectById, projectHandler } = useProjectsStore();
 
-  const TaskHandler = taskHandler(params.projectId);
-  const task = params.task;
+  const ProjectHandler = projectHandler();
+
+  const projectId = params.projectId ?? 'NO_ID';
   const isUpdate = params.isUpdate;
+  const project = getProjectById(projectId);
 
-  const [name, setName] = useState(task?.name ?? '');
-  const [description, setDescription] = useState(task?.description ?? '');
+  const [title, setTitle] = useState(project?.title ?? '');
+  const [subtitle, setSubtitle] = useState(project?.subtitle ?? '');
+  const [date, setDate] = useState(project?.date?.toDateString() ?? '');
   const [status, setStatus] = useState<StatusContent | null>(
-    task?.status ?? null,
+    project?.status ?? null,
   );
-  const [date, setDate] = useState(task?.dateTarget?.toDateString() ?? '');
-
-  const project = getProjectById(params.projectId);
-  const tasks = project.tasks?.map(currentTask => currentTask.status);
 
   const submitHandler = () => {
     if (!status) {
@@ -51,38 +45,36 @@ export const TaskForm: FC = () => {
     }
 
     if (isUpdate) {
-      TaskHandler.update({
-        id: task?.id ?? '',
-        name: name,
-        description: description,
+      ProjectHandler.update(projectId, {
+        id: projectId ?? '',
+        title: title,
+        subtitle: subtitle,
         status: status,
-        dateTarget: Date.parse(date) ? new Date(date) : null,
-        isDone: false,
+        date: Date.parse(date) ? new Date(date) : null,
       });
     } else {
-      TaskHandler.create({
+      ProjectHandler.create({
         id: uuidv4(),
-        name: name,
-        description: description,
+        title: title,
+        subtitle: subtitle,
         status: status,
-        dateTarget: Date.parse(date) ? new Date(date) : null,
-        isDone: false,
+        date: Date.parse(date) ? new Date(date) : null,
       });
     }
     navigation.goBack();
   };
 
-  const userCantSubmit = !name || !description || !status;
+  const userCantSubmit = !title || !subtitle || !status;
 
   const statusList = sortArrayOfObject<StatusContent>(
-    removeDuplicate<StatusContent>([...(tasks ?? []), ...defaultStatus]),
+    removeDuplicate<StatusContent>(defaultStatus),
     'name',
   );
 
   return (
     <ModalView>
       <Text style={formStyle.title}>
-        {isUpdate ? 'Update a task' : 'Creating a task'}
+        {isUpdate ? 'Update a project' : 'Creating a project'}
       </Text>
       <Text style={formStyle.subtitle}>
         Nothing stains and nothing washes like blood.
@@ -91,16 +83,16 @@ export const TaskForm: FC = () => {
 
       <InputWithLayout
         layoutText={'Task name :'}
-        value={name}
-        setValue={setName}
+        value={title}
+        setValue={setTitle}
         placeholder={'Take a beer'}
       />
       <Spacer space={'m'} />
 
       <InputWithLayout
         layoutText={'Description :'}
-        value={description}
-        setValue={setDescription}
+        value={subtitle}
+        setValue={setSubtitle}
         placeholder={'With Jason and Mike'}
       />
       <Spacer space={'m'} />

@@ -53,6 +53,9 @@ export const reducerProject = (
         project => project.id === action.payload.id,
       );
 
+      console.log('DEBUG projectToUpdate : ', projectToUpdate);
+      console.log('DEBUG Payload : ', action.payload.projectUpdated);
+
       if (!projectToUpdate) {
         throw new Error(`Project with id : ${action.payload.id} doesn't exist`);
       }

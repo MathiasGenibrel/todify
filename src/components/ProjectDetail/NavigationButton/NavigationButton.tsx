@@ -1,10 +1,15 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 import { Button, EButton } from '../../atoms/Button/Button';
 
-import { ProjectRootStackParamList } from '../../../views/Project';
+import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 import { button } from '../styles';
 
@@ -15,7 +20,10 @@ type NavigationButtonProps = {
 export const NavigationButton: FC<NavigationButtonProps> = ({
   buttonBackText = 'All Projects',
 }) => {
-  const { goBack } = useNavigation<NavigationProp<ProjectRootStackParamList>>();
+  const { goBack, navigate } =
+    useNavigation<NavigationProp<ProjectRootStackParamList>>();
+  const { params } =
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
 
   return (
     <View style={button.container}>
@@ -29,7 +37,12 @@ export const NavigationButton: FC<NavigationButtonProps> = ({
         gap={8}
       />
       <Button
-        pressHandler={goBack}
+        pressHandler={() =>
+          navigate(RootName.PROJECT_HANDLER, {
+            projectId: params.id,
+            isUpdate: true,
+          })
+        }
         text={'Edit'}
         type={EButton.TERTIARY}
         marginHorizontal={0}

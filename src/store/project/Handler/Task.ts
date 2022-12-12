@@ -21,11 +21,11 @@ export class Task {
   }
 
   private setCurrentProgression() {
-    const taskCompleted =
+    const tasksCompleted =
       this.project.tasks?.filter(task => task.isDone).length ?? 0;
 
     this.project.currentProgression =
-      Math.round((taskCompleted / this.project.totalTasks) * 100) || 0;
+      Math.round((tasksCompleted / this.project.totalTasks) * 100) || 0;
   }
 
   create(task: TaskContent) {

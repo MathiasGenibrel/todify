@@ -21,8 +21,7 @@ export type ProjectData = {
   id: string;
   title: string;
   subtitle: string;
-  date: Date;
-  goal: number;
+  date: Date | null;
   status: StatusContent;
   tasks?: TaskContent[];
 };

@@ -7,6 +7,7 @@ export enum RootName {
   PROJECTS = 'projects',
   DETAIL = 'detail',
   TASK_HANDLER = 'taskHandler',
+  PROJECT_HANDLER = 'projectHandler',
   CREATE_STATUS = 'createStatus',
 }
 
@@ -17,6 +18,10 @@ export type ProjectRootStackParamList = {
     projectId: string;
     isUpdate?: boolean;
     task?: TaskContentProps;
+  };
+  [RootName.PROJECT_HANDLER]: {
+    projectId?: string;
+    isUpdate?: boolean;
   };
   [RootName.CREATE_STATUS]?: {
     statusName?: string;

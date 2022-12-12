@@ -8,6 +8,7 @@ import { Card } from '../Card/Card';
 import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 import { spacings } from '../../../styles/theme';
 import { useProjectsStore } from '../../../store/project/useProjectsStore';
+import { Button, EButton } from '../../atoms/Button/Button';
 
 const styles = StyleSheet.create({
   container: {
@@ -43,6 +44,13 @@ export const ListProject = () => {
         </React.Fragment>
       ))}
       <Spacer space={'xl'} direction={'all'} />
+
+      <Button
+        pressHandler={() => navigation.navigate(RootName.PROJECT_HANDLER, {})}
+        text={'Create a Project'}
+        type={EButton.PRIMARY}
+      />
+      <Spacer space={'4xl'} direction={'all'} />
     </ScrollView>
   );
 };

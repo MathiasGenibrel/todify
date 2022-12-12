@@ -30,7 +30,7 @@ export class Project {
   public create(userProject: ProjectDataHandler) {
     this.dispatch({
       type: ActionType.CREATE,
-      payload: { projectUpdated: this.setCalculationValue(userProject) },
+      payload: { project: this.setCalculationValue(userProject) },
     });
   }
 

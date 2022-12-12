@@ -14,7 +14,11 @@ const styles = StyleSheet.create({
   date: { marginLeft: spacings.s, fontWeight: '600' },
 });
 
-const dateConverter = (currentDate: Date) => {
+const dateConverter = (currentDate: Date | string) => {
+  if (typeof currentDate === 'string') {
+    return currentDate;
+  }
+
   return currentDate.toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'short',

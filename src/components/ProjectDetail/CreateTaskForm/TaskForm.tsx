@@ -22,7 +22,7 @@ import { removeDuplicate } from '../../../helpers/removeDuplicate';
 import { styles } from './CreateTaskForm.styles';
 
 export type TaskContentProps = Partial<
-  Pick<TaskContent, 'name' | 'description' | 'status' | 'dateTarget'>
+  Pick<TaskContent, 'id' | 'name' | 'description' | 'status' | 'dateTarget'>
 >;
 
 export const TaskForm: FC = () => {
@@ -50,14 +50,25 @@ export const TaskForm: FC = () => {
       return;
     }
 
-    TaskHandler.create({
-      id: uuidv4(),
-      name: name,
-      description: description,
-      status: status,
-      dateTarget: Date.parse(date) ? new Date(date) : null,
-      isDone: false,
-    });
+    if (isUpdate) {
+      TaskHandler.update({
+        id: task?.id ?? '',
+        name: name,
+        description: description,
+        status: status,
+        dateTarget: Date.parse(date) ? new Date(date) : null,
+        isDone: false,
+      });
+    } else {
+      TaskHandler.create({
+        id: uuidv4(),
+        name: name,
+        description: description,
+        status: status,
+        dateTarget: Date.parse(date) ? new Date(date) : null,
+        isDone: false,
+      });
+    }
     navigation.goBack();
   };
 

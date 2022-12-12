@@ -21,7 +21,7 @@ import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
 import { styles } from './CreateTaskForm.styles';
 
-export const CreateTaskForm = () => {
+export const TaskForm = () => {
   const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.CREATE_TASK>>();
   const navigation = useNavigation();

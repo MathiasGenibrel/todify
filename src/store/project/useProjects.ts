@@ -4,8 +4,8 @@ import { useRequiredAuth } from '../../hooks/useRequiredAuth';
 
 import { ActionType, reducerProject } from './reducer';
 import { LocalRealtimeDatabaseRepository } from '../../repository/realtimeDatabase/localRealtimeDatabaseRepository';
-import { ProjectsUserData } from '../../repository/realtimeDatabase/realtimeDatabaseRepository';
 import { Task } from './Handler/Task';
+import { Project } from './Handler/Project';
 
 const projectDB = new LocalRealtimeDatabaseRepository();
 
@@ -22,23 +22,6 @@ export const useProjects = () => {
     );
   }, [user.id]);
 
-  const createProject = (userProject: ProjectsUserData) =>
-    dispatch({ type: ActionType.CREATE, payload: { project: userProject } });
-
-  const updateProject = (projectId: string, projectData: ProjectsUserData) => {
-    dispatch({
-      type: ActionType.UPDATE,
-      payload: { id: projectId, project: projectData },
-    });
-  };
-
-  const deleteProject = (projectId: string) => {
-    dispatch({
-      type: ActionType.DELETE,
-      payload: { id: projectId },
-    });
-  };
-
   const getProjectById = (id: string) => {
     const projectToUpdate = projects.find(project => project.id === id);
 
@@ -49,18 +32,15 @@ export const useProjects = () => {
     return { ...projectToUpdate };
   };
 
+  const projectHandler = () => new Project(dispatch);
+
   const taskHandler = (projectId: string) =>
     new Task(dispatch, getProjectById, projectId);
 
   return {
     projects,
     getProjectById,
-    // Project handler
-    createProject,
-    updateProject,
-    deleteProject,
-
-    // Task Handler
+    projectHandler,
     taskHandler,
   };
 };

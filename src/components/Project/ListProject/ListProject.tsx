@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
 
 export const ListProject = () => {
   const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
-  const { projects, deleteProject } = useProjectsStore();
+  const { projects, projectHandler } = useProjectsStore();
+  const Project = projectHandler();
 
   // TODO use a real error display
   if (!projects.length) {
@@ -36,7 +37,7 @@ export const ListProject = () => {
           <Card
             {...project}
             pressHandler={() => clickHandler(project.id)}
-            longPressDeleteAction={() => deleteProject(project.id)}
+            longPressDeleteAction={() => Project.delete(project.id)}
           />
           <Spacer space={'l'} direction={'bottom'} />
         </React.Fragment>

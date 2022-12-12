@@ -20,10 +20,21 @@ export class Task {
     this.projectId = projectId;
   }
 
+  private setCurrentProgression() {
+    const taskCompleted =
+      this.project.tasks?.filter(task => task.isDone).length ?? 0;
+
+    this.project.currentProgression =
+      Math.round((taskCompleted / this.project.totalTasks) * 100) || 0;
+  }
+
   create(task: TaskContent) {
     this.project.tasks = this.project.tasks
       ? [...this.project.tasks, task]
       : [task];
+
+    this.project.totalTasks = this.project.tasks.length;
+    this.setCurrentProgression();
 
     this.dispatch({
       type: ActionType.UPDATE,
@@ -41,6 +52,8 @@ export class Task {
       task,
     ];
 
+    this.setCurrentProgression();
+
     this.dispatch({
       type: ActionType.UPDATE,
       payload: { id: this.projectId, projectUpdated: this.project },
@@ -54,6 +67,8 @@ export class Task {
 
     this.project.tasks = this.project.tasks.filter(task => task.id !== taskId);
     this.project.totalTasks = this.project.tasks.length;
+
+    this.setCurrentProgression();
 
     this.dispatch({
       type: ActionType.UPDATE,

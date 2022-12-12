@@ -1,18 +1,23 @@
 import React from 'react';
 import { ProjectRouter } from '../router/ProjectRouter';
 import { ProjectStoreProvider } from '../store/project/projectStore';
+import { TaskContentProps } from '../components/ProjectDetail/CreateTaskForm/TaskForm';
 
 export enum RootName {
   PROJECTS = 'projects',
   DETAIL = 'detail',
-  CREATE_TASK = 'createTask',
+  TASK_HANDLER = 'taskHandler',
   CREATE_STATUS = 'createStatus',
 }
 
 export type ProjectRootStackParamList = {
   [RootName.PROJECTS]: undefined;
   [RootName.DETAIL]: { id: string };
-  [RootName.CREATE_TASK]: { projectId: string };
+  [RootName.TASK_HANDLER]: {
+    projectId: string;
+    isUpdate?: boolean;
+    task?: TaskContentProps;
+  };
   [RootName.CREATE_STATUS]?: {
     statusName?: string;
   };

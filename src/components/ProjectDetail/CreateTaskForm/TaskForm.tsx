@@ -1,5 +1,5 @@
 import { Text } from 'react-native';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useProjectsStore } from '../../../store/project/useProjectsStore';
 
@@ -14,28 +14,36 @@ import { Button, EButton } from '../../atoms/Button/Button';
 import { Dropdown } from '../../atoms/Dropdown/Dropdown';
 import { ModalView } from '../../atoms/Modal/Modal';
 
-import { StatusContent } from '../../../types/firebaseDB.types';
+import { StatusContent, TaskContent } from '../../../types/firebaseDB.types';
 import { ProjectRootStackParamList, RootName } from '../../../views/Project';
 
 import { removeDuplicate } from '../../../helpers/removeDuplicate';
 
 import { styles } from './CreateTaskForm.styles';
 
-export const TaskForm = () => {
+export type TaskContentProps = Partial<
+  Pick<TaskContent, 'name' | 'description' | 'status' | 'dateTarget'>
+>;
+
+export const TaskForm: FC = () => {
   const { params } =
-    useRoute<RouteProp<ProjectRootStackParamList, RootName.CREATE_TASK>>();
+    useRoute<RouteProp<ProjectRootStackParamList, RootName.TASK_HANDLER>>();
   const navigation = useNavigation();
   const { getProjectById, taskHandler } = useProjectsStore();
 
   const TaskHandler = taskHandler(params.projectId);
+  const task = params.task;
+  const isUpdate = params.isUpdate;
 
-  const [taskName, setTaskName] = useState('');
-  const [description, setDescription] = useState('');
-  const [status, setStatus] = useState<StatusContent | null>(null);
-  const [date, setDate] = useState('');
+  const [name, setName] = useState(task?.name ?? '');
+  const [description, setDescription] = useState(task?.description ?? '');
+  const [status, setStatus] = useState<StatusContent | null>(
+    task?.status ?? null,
+  );
+  const [date, setDate] = useState(task?.dateTarget?.toDateString() ?? '');
 
   const project = getProjectById(params.projectId);
-  const tasks = project.tasks?.map(task => task.status);
+  const tasks = project.tasks?.map(currentTask => currentTask.status);
 
   const submitHandler = () => {
     if (!status) {
@@ -44,7 +52,7 @@ export const TaskForm = () => {
 
     TaskHandler.create({
       id: uuidv4(),
-      name: taskName,
+      name: name,
       description: description,
       status: status,
       dateTarget: Date.parse(date) ? new Date(date) : null,
@@ -53,7 +61,7 @@ export const TaskForm = () => {
     navigation.goBack();
   };
 
-  const userCantSubmit = !taskName || !description || !status;
+  const userCantSubmit = !name || !description || !status;
 
   const statusList = sortArrayOfObject<StatusContent>(
     removeDuplicate<StatusContent>([...(tasks ?? []), ...defaultStatus]),
@@ -62,7 +70,9 @@ export const TaskForm = () => {
 
   return (
     <ModalView>
-      <Text style={styles.title}>Creating a task</Text>
+      <Text style={styles.title}>
+        {isUpdate ? 'Update a task' : 'Creating a task'}
+      </Text>
       <Text style={styles.subtitle}>
         Nothing stains and nothing washes like blood.
       </Text>
@@ -70,8 +80,8 @@ export const TaskForm = () => {
 
       <InputWithLayout
         layoutText={'Task name :'}
-        value={taskName}
-        setValue={setTaskName}
+        value={name}
+        setValue={setName}
         placeholder={'Take a beer'}
       />
       <Spacer space={'m'} />
@@ -101,7 +111,7 @@ export const TaskForm = () => {
       <Spacer space={'m'} />
 
       <Button
-        text={'Create'}
+        text={isUpdate ? 'Update' : 'Create'}
         type={EButton.PRIMARY}
         pressHandler={submitHandler}
         disabled={userCantSubmit}

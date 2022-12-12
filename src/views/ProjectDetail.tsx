@@ -10,12 +10,19 @@ import { TitleSection } from '../components/ProjectDetail/Title/TitleSection';
 import { TaskSection } from '../components/ProjectDetail/TaskSection/TaskSection';
 import { Card, CardType } from '../components/Project/Card/Card';
 import { useProjectsStore } from '../store/project/useProjectsStore';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import { ProjectRootStackParamList, RootName } from './Project';
 
 export const ProjectDetail = () => {
   const { params } =
     useRoute<RouteProp<ProjectRootStackParamList, RootName.DETAIL>>();
+  const navigation = useNavigation<NavigationProp<ProjectRootStackParamList>>();
+
   const { projects, taskHandler } = useProjectsStore();
 
   const Task = taskHandler(params.id);
@@ -43,7 +50,13 @@ export const ProjectDetail = () => {
         {project.tasks?.map(task => (
           <React.Fragment key={task.id}>
             <Card
-              pressHandler={() => null /* TODO à changer */}
+              pressHandler={() =>
+                navigation.navigate(RootName.TASK_HANDLER, {
+                  projectId: params.id,
+                  isUpdate: true,
+                  task: task,
+                })
+              }
               longPressDeleteAction={() => Task.delete(task.id)}
               title={task.name}
               subtitle={task.description}

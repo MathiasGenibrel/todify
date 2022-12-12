@@ -43,7 +43,7 @@ export const TaskSection: FC<TaskSection> = ({ projectId, tasks }) => {
             text={'New Task'}
             type={EButton.SECONDARY}
             pressHandler={() =>
-              navigation.navigate(RootName.CREATE_TASK, { projectId })
+              navigation.navigate(RootName.TASK_HANDLER, { projectId })
             }
             iconName={'plus'}
             iconSize={12}

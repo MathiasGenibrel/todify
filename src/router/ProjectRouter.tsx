@@ -27,7 +27,7 @@ export const ProjectRouter = () => {
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
-          name={RootName.CREATE_TASK}
+          name={RootName.TASK_HANDLER}
           component={TaskForm}
           options={{ header: () => null }}
         />

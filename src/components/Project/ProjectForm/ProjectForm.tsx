@@ -30,7 +30,7 @@ export const ProjectForm: FC = () => {
 
   const projectId = params.projectId ?? 'NO_ID';
   const isUpdate = params.isUpdate;
-  const project = isUpdate ? undefined : getProjectById(projectId);
+  const project = isUpdate ? getProjectById(projectId) : undefined;
 
   const [title, setTitle] = useState(project?.title ?? '');
   const [subtitle, setSubtitle] = useState(project?.subtitle ?? '');

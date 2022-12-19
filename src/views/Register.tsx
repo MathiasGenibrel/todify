@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { CompanyBrand } from '../components/atoms/CompanyBrand/CompanyBrand';
-import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
+// import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
 import { RegisterForm } from '../components/Register/RegisterForm/RegisterForm';
 import { SignInCTA } from '../components/Register/SignInCTA';
 import { spacings } from '../styles/theme';
@@ -21,9 +21,9 @@ export const Register: FC = () => {
 
       <Spacer space={'4xl'} direction={'bottom'} />
 
-      <AuthExternalProvider />
+      {/*<AuthExternalProvider />*/}
 
-      <Spacer space={'4xl'} direction={'bottom'} />
+      {/*<Spacer space={'4xl'} direction={'bottom'} />*/}
 
       <SignInCTA />
     </View>

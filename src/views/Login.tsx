@@ -5,8 +5,8 @@ import { Spacer } from '../components/atoms/Spacer/Spacer';
 import { CompanyBrand } from '../components/atoms/CompanyBrand/CompanyBrand';
 import { LoginForm } from '../components/Login/LoginForm';
 import { RegisterCTA } from '../components/Login/RegisterCTA';
-import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
-import { ForgetPassword } from '../components/Login/ForgetPassword';
+// import { AuthExternalProvider } from '../components/atoms/AuthExternalProvider/AuthExternalProvider';
+// import { ForgetPassword } from '../components/Login/ForgetPassword';
 import { spacings } from '../styles/theme';
 
 const styles = StyleSheet.create({
@@ -20,13 +20,13 @@ export const Login: FC = () => {
       <CompanyBrand size={128} />
       <LoginForm />
 
-      <Spacer space={'xl'} direction={'bottom'} />
+      {/*<Spacer space={'xl'} direction={'bottom'} />*/}
 
-      <ForgetPassword />
+      {/*<ForgetPassword />*/}
 
-      <Spacer space={'xl'} direction={'bottom'} />
+      {/*<Spacer space={'xl'} direction={'bottom'} />*/}
 
-      <AuthExternalProvider />
+      {/*<AuthExternalProvider />*/}
 
       <Spacer space={'4xl'} direction={'bottom'} />
 
